@@ -233,7 +233,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52db6ca8ef17fa449c1829c90f70a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sideLength: 6
+  highlight: {fileID: 0}
+  debugSphere: {fileID: 6802801391296719367, guid: 73eecf0b90f01f84c88c0e07379666b4,
+    type: 3}
+  startingTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  halfSideLength: 4
 --- !u!4 &1547391006
 Transform:
   m_ObjectHideFlags: 0

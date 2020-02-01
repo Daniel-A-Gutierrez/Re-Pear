@@ -19,145 +19,217 @@ public class Station : MonoBehaviour
     //or middle/2 and +1 in each dir
 
     public GameObject highlight;
-    GameObject[,] tiles;
+    public GameObject[,] tiles;
     GameObject[,] highlights;
+    public GameObject debugSphere;
+    ///<summary> 8 blocks that wrap around the core clockwise from noon </summary>
+    public GameObject[] startingTiles;
 
     [Range(3,24)]
-    public int sideLength;
+    public int halfSideLength;
 
     void Awake()
     {
-        tiles = new GameObject[sideLength,sideLength];
-        tiles[sideLength/2,sideLength/2] = gameObject;
-        tiles[sideLength/2+1,sideLength/2] = gameObject;
-        tiles[sideLength/2,sideLength/2+1] = gameObject;
-        tiles[sideLength/2+1,sideLength/2+1] = gameObject;
-        highlights = new GameObject[sideLength,sideLength];
+        tiles = new GameObject[halfSideLength*2,halfSideLength*2];
+        tiles[halfSideLength,halfSideLength] = gameObject;
+        tiles[halfSideLength-1,halfSideLength] = gameObject;
+        tiles[halfSideLength,halfSideLength-1] = gameObject;
+        tiles[halfSideLength-1,halfSideLength-1] = gameObject;
+        highlights = new GameObject[halfSideLength*2,halfSideLength*2];
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        for(int i = 0 ; i  <halfSideLength*2 ; i++)
+        {
+            for(int q = 0 ; q < halfSideLength*2; q++)
+            {
+                if(tiles[i,q] != null)
+                {
+                    tiles[i,q].transform.parent = transform;
+                    Vector2Int tilePos = ArrayPosToTilemapPos(i,q) ;
+                
+                    tiles[i,q].transform.localPosition = TilemapPosToLocalPos(tilePos.x,tilePos.y);
+                } 
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Gizmos.color = Color.green;
+        for(int i = -3 ; i < 3; i++)
+        {
+            for(int q = -3 ; q < 3 ; q++)
+            {
+                if(PlacementAllowed(i,q))
+                    Instantiate(debugSphere,TilemapPosToLocalPos(i,q) + transform.position, Quaternion.identity);
+                    //Gizmos.DrawSphere(TilemapPosToLocalPos(i,q) + transform.position , .1f);
+            }
+        }
     }
 
 
 
-    ///<summary>PASS IN A PREFAB, NOT AN INSTANTIATED OBJECT.</summary>
+    ///<summary>PASS IN A PREFAB, NOT AN INSTANTIATED OBJECT. Use tilemap pos x and y </summary>
     public void AddTile(int x, int y, GameObject tile)
     {
         if(PlacementAllowed(x,y))
         {
-            tiles[x,y] = GameObject.Instantiate(tile,TilemapPosToLocalPos(x,y),Quaternion.identity,transform);
+            // tiles[x,y] = GameObject.Instantiate(tile,TilemapPosToLocalPos(x,y),Quaternion.identity,transform);
         }
     }
-
+    ///<summary> Use tilemap Position x and y</summary>
     public void RemoveTile(int x, int y)
     {
-        if((x == sideLength/2 || x == sideLength/2+1) && (y==sideLength/2 || y== sideLength/2+1))
+        if((x == halfSideLength || x == halfSideLength-1) && (y==halfSideLength || y== halfSideLength-1))
         {
             return;
         }
         if(tiles[x,y] != null)
         {
             //kill the tile with its builtin coroutine
-
+            Vector2Int arrayPos = TilemapPosToArrayPos(x,y);
             //for now just destroy it.
-            Destroy(tiles[x,y]);
-            tiles[x,y] = null;
+            Destroy(tiles[arrayPos.x,arrayPos.y]);
+            tiles[arrayPos.x,arrayPos.y] = null;
 
             //iterate over adjacent tiles to this position, revalidate them, if theyre not ok call remove tile
-            if(tiles[x+1,y] && !ValidatePosition(x+1,y) )
+            if(tiles[x+1,y] && !AdjacentOccupied(x+1,y) )
                 RemoveTile(x+1,y);
-            if(tiles[x-1,y] && !ValidatePosition(x-1,y) )
+            if(tiles[x-1,y] && !AdjacentOccupied(x-1,y) )
                 RemoveTile(x-1,y);
-            if(tiles[x,y+1] && !ValidatePosition(x,y+1) )
+            if(tiles[x,y+1] && !AdjacentOccupied(x,y+1) )
                 RemoveTile(x,y+1);
-            if(tiles[x,y-1] && !ValidatePosition(x,y-1) )
+            if(tiles[x,y-1] && !AdjacentOccupied(x,y-1) )
                 RemoveTile(x,y-1);
 
         }
     }
 
     //[MethodImplAttribute(MethodImplOptions.AggressiveInlining)] //inline shit for SPEED
-    bool ValidatePosition(int x, int y)
+    ///<summary> takes a tilemap position </summary>
+    bool AdjacentOccupied(int x, int y)//this would be complicated to get correct, A* to find core through adjacent tiles. 
     {
-        return  (tiles[x,y+1] != null || tiles[x+1,y] != null || tiles[x-1,y] != null || tiles[x,y-1] != null);
+        bool neighbor = false;
+        Vector2Int arrayPos = TilemapPosToArrayPos(x,y);
+        x = arrayPos.x;
+        y = arrayPos.y;
+        try
+        {
+            neighbor |= (tiles[x,y+1] != null);
+        }
+        catch
+        {}
+
+        try
+        {
+            neighbor |= (tiles[x,y-1] != null);
+        }
+        catch
+        {}  
+
+        try
+        {
+            neighbor |= (tiles[x+1,y] != null);
+        }
+        catch
+        {} 
+
+        try
+        {
+            neighbor |= (tiles[x-1,y] != null);
+        }
+        catch
+        {} 
+
+        return  neighbor;
     }
+
+
 
     ///<summary>Takes a Tilemap Position</summary>
     public bool PlacementAllowed(int x, int y)
     {
-        if(x > sideLength-1 || y > sideLength -1 || x < 0 || y < 0)//out of bounds
+        if(x == 2 && y == 2)
+        {
+            print(x);
+        }
+        Vector2Int arrayPos = TilemapPosToArrayPos(x,y);
+        if(arrayPos.x >= halfSideLength*2 || arrayPos.y >= halfSideLength*2 || arrayPos.x < 0 || arrayPos.y < 0)//out of bounds
             return false;
-        if( tiles[x,y]==null && 
-            (tiles[x+1,y] != null || tiles[x-1,y] != null ||tiles[x,y+1] != null ||tiles[x,y-1] != null ) )
-            {
-                return true;
-            }
+        if( tiles[arrayPos.x,arrayPos.y]==null && AdjacentOccupied(x,y)) 
+        {
+            return true;
+        }
         return false;
     }
 
 
 
+///////////////////////
 
 
     public Vector3 TilemapPosToLocalPos(int x, int y)//this shit broke rn
     {
-        return new Vector3( x - (float)(sideLength%2)/2 , y - (float)(sideLength%2)/2 , 0);
+        return new Vector3( x +.5f , y + .5f , 0);
     }
 
     public Vector2Int WorldPosToTilemapPos(Vector3 pos)
     {
-        if( Mathf.Abs(pos.x - transform.position.x) < (float)(sideLength)/2f &&
-            Mathf.Abs(pos.y - transform.position.y) < (float)(sideLength)/2f)
+        if( Mathf.Abs(pos.x - transform.position.x) < (halfSideLength) &&
+            Mathf.Abs(pos.y - transform.position.y) < (halfSideLength))
         {
-            return new Vector2Int(   (int)(pos.x - transform.position.x + (float)(sideLength)/2),
-                                     (int)(pos.y - transform.position.y + (float)(sideLength)/2));
+            return new Vector2Int(   Mathf.FloorToInt((pos.x - transform.position.x )),
+                                     Mathf.FloorToInt((pos.y - transform.position.y )));
         }
         else
         {
             Debug.LogWarning("WorldPos not within tilemap");
-           return new Vector2Int(-1,-1);
+           return new Vector2Int(0,0);
         }
     }
 
     public Vector2Int ArrayPosToTilemapPos(int x, int y)
     {
         //DO A BOUNDS CHECK HERE
-        if(x > 0 && y > 0 && x < sideLength && y < sideLength)
-            return new Vector2Int((int)(x-(float)sideLength/2), (int)(y-(float)sideLength/2));
+        if(x > 0 && y > 0 && x < halfSideLength*2 && y < halfSideLength*2)
+            return new Vector2Int(x-halfSideLength, y-halfSideLength);
         else
         {
             Debug.LogWarning("Array pos out of bounds");
-            return new Vector2Int(10000,10000);
+            return new Vector2Int(0,0);
         }
     }
 
     public Vector2Int TilemapPosToArrayPos(int x, int y) // in progress
     {
         //DO A BOUNDS CHECK HERE
-        if(x < -sideLength/2)
-            return new Vector2Int(x +sideLength/2, y+sideLength/2);
-        return Vector2Int.zero;
+        if(x < -halfSideLength || y < -halfSideLength || x >= halfSideLength || y >= halfSideLength)
+        {
+            Debug.LogWarning("Out of bounds");
+            return Vector2Int.zero;
+        }
+        else
+        {
+            return new Vector2Int(x + halfSideLength, y + halfSideLength);
+        }
     }
+    
 
-    // void OnDrawGizmosSelected()
-    // {
-    //     Gizmos.color = Color.green;
-    //     for(int i = -24 ; i < 25; i++)
-    //     {
-    //         for(int q = -24 ; q < 25 ; q++)
-    //         {
-    //             if(PlacementAllowed(i,q))
-    //                 Gizmos.DrawSphere(TilemapPosToLocalPos(i,q) + transform.position , .1f);
-    //         }
-    //     }
-    // }
+    void OnDrawGizmos()    
+    {
+        Gizmos.color = Color.green;
+        for(int i = -24 ; i < 25; i++)
+        {
+            for(int q = -24 ; q < 25 ; q++)
+            {
+                if(PlacementAllowed(i,q))
+                    Gizmos.DrawSphere(TilemapPosToLocalPos(i,q) + transform.position , .1f);
+            }
+        }
+    }
+    
 }
