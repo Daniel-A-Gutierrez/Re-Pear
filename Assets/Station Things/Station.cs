@@ -145,18 +145,19 @@ public class Station : MonoBehaviour
         //DO A BOUNDS CHECK HERE
         if(x < -sideLength/2)
             return new Vector2Int(x +sideLength/2, y+sideLength/2);
+        return Vector2Int.zero;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        for(int i = -24 ; i < 25; i++)
-        {
-            for(int q = -24 ; q < 25 ; q++)
-            {
-                if(PlacementAllowed(i,q))
-                    Gizmos.DrawSphere(TilemapPosToLocalPos(i,q) + transform.position , .1f);
-            }
-        }
-    }
+    // void OnDrawGizmosSelected()
+    // {
+    //     Gizmos.color = Color.green;
+    //     for(int i = -24 ; i < 25; i++)
+    //     {
+    //         for(int q = -24 ; q < 25 ; q++)
+    //         {
+    //             if(PlacementAllowed(i,q))
+    //                 Gizmos.DrawSphere(TilemapPosToLocalPos(i,q) + transform.position , .1f);
+    //         }
+    //     }
+    // }
 }
