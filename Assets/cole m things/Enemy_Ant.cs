@@ -32,7 +32,6 @@ public class Enemy_Ant : MonoBehaviour
 
         //vel.Normalize();
         antBody.velocity = vel * speedMod;
-        print("actual val: " + antBody.velocity);
     }
 
     // Update is called once per frame
