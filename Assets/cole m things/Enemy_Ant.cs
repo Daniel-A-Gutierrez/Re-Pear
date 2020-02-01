@@ -7,10 +7,11 @@ public class Enemy_Ant : MonoBehaviour
     public float speedMod;
     public float damage;
     public GameObject ant;
-    public Transform stationCore;
 
+    public Transform stationCore;
     private Rigidbody2D antBody;
     private Transform antTransform;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,12 @@ public class Enemy_Ant : MonoBehaviour
         GameObject toDestroy = collision.gameObject;
         if (toDestroy.tag == "StationArmor")
         {
-            Destroy(toDestroy);
+           // Destroy(toDestroy);
         }
+    }
+
+    public void setStationCore(Transform core)
+    {
+        stationCore = core;
     }
 }
