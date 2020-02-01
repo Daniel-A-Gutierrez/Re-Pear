@@ -157,7 +157,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -240,14 +240,14 @@ MonoBehaviour:
   debugSphere: {fileID: 6802801391296719367, guid: 73eecf0b90f01f84c88c0e07379666b4,
     type: 3}
   startingTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52, type: 3}
+  - {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52, type: 3}
+  - {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52, type: 3}
+  - {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52, type: 3}
+  - {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52, type: 3}
+  - {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52, type: 3}
+  - {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52, type: 3}
+  - {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52, type: 3}
   halfSideLength: 4
 --- !u!4 &1547391006
 Transform:
