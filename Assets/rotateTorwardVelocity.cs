@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class rotateTorwardVelocity : MonoBehaviour
+public class rotateTorwardVelocity : MonoBehaviour, IOrdered
 {
 
     Vector3 position;
@@ -16,7 +16,9 @@ public class rotateTorwardVelocity : MonoBehaviour
         direction = transform.up;
     }
 
-    void LateUpdate()
+    public int GetOrder() {return 1;}
+
+    public void OrderedUpdate()
     {
         velocity = (transform.position - position);
         position = transform.position;
@@ -32,7 +34,7 @@ public class rotateTorwardVelocity : MonoBehaviour
         float sign = Mathf.Sign(Vector3.Cross(transform.up, direction).z);
 
         // Apply the rotation over time
-        angle *= Time.deltaTime / speed * sign;
+        angle *= Time.fixedDeltaTime / speed * sign;
         transform.Rotate(0.0f, 0.0f, angle);
 
     }
