@@ -59,16 +59,6 @@ public class Station : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Gizmos.color = Color.green;
-        for(int i = -3 ; i < 3; i++)
-        {
-            for(int q = -3 ; q < 3 ; q++)
-            {
-                if(PlacementAllowed(i,q))
-                    Instantiate(debugSphere,TilemapPosToLocalPos(i,q) + transform.position, Quaternion.identity);
-                    //Gizmos.DrawSphere(TilemapPosToLocalPos(i,q) + transform.position , .1f);
-            }
-        }
     }
 
 
@@ -219,17 +209,6 @@ public class Station : MonoBehaviour
     }
     
 
-    void OnDrawGizmos()    
-    {
-        Gizmos.color = Color.green;
-        for(int i = -24 ; i < 25; i++)
-        {
-            for(int q = -24 ; q < 25 ; q++)
-            {
-                if(PlacementAllowed(i,q))
-                    Gizmos.DrawSphere(TilemapPosToLocalPos(i,q) + transform.position , .1f);
-            }
-        }
-    }
+
     
 }
