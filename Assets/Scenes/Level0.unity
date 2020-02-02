@@ -128,15 +128,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 402022642, guid: e79d49d3a288c44858cf4bd898fd426e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2117016215, guid: e79d49d3a288c44858cf4bd898fd426e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2117016218, guid: e79d49d3a288c44858cf4bd898fd426e, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -148,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 928826383361846356, guid: e79d49d3a288c44858cf4bd898fd426e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2083674267737003960, guid: e79d49d3a288c44858cf4bd898fd426e,
         type: 3}
@@ -233,12 +225,22 @@ PrefabInstance:
     - target: {fileID: 3605516872807873146, guid: e79d49d3a288c44858cf4bd898fd426e,
         type: 3}
       propertyPath: m_Mass
-      value: 0.19634955
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3605516872807873146, guid: e79d49d3a288c44858cf4bd898fd426e,
         type: 3}
       propertyPath: m_AngularDrag
       value: 88.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605516872807873146, guid: e79d49d3a288c44858cf4bd898fd426e,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605516872807873146, guid: e79d49d3a288c44858cf4bd898fd426e,
+        type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3605516872807873147, guid: e79d49d3a288c44858cf4bd898fd426e,
         type: 3}
@@ -273,22 +275,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 124484578}
   m_PrefabAsset: {fileID: 0}
---- !u!58 &714079110
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714079109}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
 --- !u!4 &714079115 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3605516872807873127, guid: e79d49d3a288c44858cf4bd898fd426e,
@@ -391,33 +377,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &759925632 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 164631592956998182, guid: 528c1a1fbf460451197fdadfb7a5c222,
-    type: 3}
-  m_PrefabInstance: {fileID: 1107691534}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &759925637
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 759925632}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.05
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1001 &1107691534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -493,7 +452,7 @@ PrefabInstance:
     - target: {fileID: 164631592956998186, guid: 528c1a1fbf460451197fdadfb7a5c222,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 528c1a1fbf460451197fdadfb7a5c222, type: 3}
@@ -578,6 +537,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BackgroundColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573163645148082747, guid: 8be7f15c925c74db5b1f5c3b5c335250,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8be7f15c925c74db5b1f5c3b5c335250, type: 3}
