@@ -6,4 +6,9 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     public virtual void Use(PlayerController player){}
+    public virtual void Highlight(PlayerController player){}
+    public virtual void UnHighlight(PlayerController player){}
+    public bool topickup = true;
+    //forgiv me programming gods
+    public GameObject tile;
 }

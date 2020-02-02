@@ -95,11 +95,32 @@ public class PlayerController : MonoBehaviour
             Shoot();
         }
 
+
+        //USE THING
         if(use.selecting != null && Input.GetKeyDown(KeyCode.E))
         {
-            use.selecting.GetComponent<Interactable>().Use(this);
+            //check what use is selecting
+                //current possibilities
+                    //gun pickup, many kinds of fruit, 
+                    //things you pickup, and highlight blocks where you place stuff
+            if(use.selecting.GetComponent<Interactable>().topickup)
+            {
+                if(inventory==null)
+                    use.selecting.GetComponent<Interactable>().Use(this);
+            }
+            else // its a placing place
+            {
+                if(inventory!=null)
+                    use.selecting.GetComponent<Interactable>().Use(this);
+            }
+            //do a thing
         }
         
+    }
+
+    public GameObject GetTile()
+    {
+        return inventory.GetComponent<Interactable>().tile;
     }
 
     void Shoot()
@@ -128,6 +149,16 @@ public class PlayerController : MonoBehaviour
         inventory = null;
         transform.Find("Tractor Beam Left").gameObject.SetActive(false);
         transform.Find("Tractor Beam Right").gameObject.SetActive(false);
+    }
+
+    public bool HasTileInInventory()
+    {
+        //rudimentary
+        if(inventory!= null)
+        {
+            return true;
+        }
+        return false;
     }
 
 

@@ -41,19 +41,17 @@ public class Station : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // for(int i = 0 ; i  <halfSideLength*2 ; i++)
-        // {
-        //     for(int q = 0 ; q < halfSideLength*2; q++)
-        //     {
-        //         if(tiles[i,q] != null)
-        //         {
-        //             tiles[i,q].transform.parent = transform;
-        //             Vector2Int tilePos = ArrayPosToTilemapPos(i,q) ;
-                
-        //             tiles[i,q].transform.localPosition = TilemapPosToLocalPos(tilePos.x,tilePos.y);
-        //         } 
-        //     }
-        // }
+        for(int i = 0 ; i  <halfSideLength*2 ; i++)
+        {
+            for(int q = 0 ; q < halfSideLength*2; q++)
+            {
+                Vector2Int tilePos = ArrayPosToTilemapPos(i,q) ;
+                highlights[i,q] = Instantiate(highlight,TilemapPosToLocalPos(tilePos.x,tilePos.y),Quaternion.identity);
+                highlights[i,q].transform.parent = transform;
+                highlights[i,q].transform.localPosition = TilemapPosToLocalPos(tilePos.x,tilePos.y);
+                highlights[i,q].GetComponent<TileSelector>().CreateTile(tilePos,this);
+            }
+        }
 
         
         AddTile(0,1,startingTiles[0]);
