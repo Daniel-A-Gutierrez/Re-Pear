@@ -29,6 +29,11 @@ public class Bezier : MonoBehaviour, IOrdered {
 
     public int GetOrder() {return 3;}
 
+    void Update()
+    {
+        OrderedUpdate();
+    }
+
     public void OrderedUpdate() {
         
         length = Vector3.Distance(startTransform.position, endTransform.position) / 2.0f;

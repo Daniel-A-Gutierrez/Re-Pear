@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &651541248238481999
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2586324468051830908}
-  m_Layer: 0
-  m_Name: Tractor Beam
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2586324468051830908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651541248238481999}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2533011554059364491}
-  - {fileID: 4844217522179496285}
-  m_Father: {fileID: 3605516872807873127}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928826383361846356
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,8 +77,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2586324468051830908}
-  m_RootOrder: 0
+  m_Father: {fileID: 3605516872807873127}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &5376547369119264868
 LineRenderer:
@@ -294,7 +262,8 @@ Transform:
   m_Children:
   - {fileID: 3605516873556804997}
   - {fileID: 1265864502729101108}
-  - {fileID: 2586324468051830908}
+  - {fileID: 2533011554059364491}
+  - {fileID: 4844217522179496285}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -313,6 +282,7 @@ MonoBehaviour:
   speed: 8
   startTime: 0.3
   stopTime: 0.3
+  fireRate: 4
 --- !u!50 &3605516872807873146
 Rigidbody2D:
   serializedVersion: 4
@@ -514,8 +484,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2586324468051830908}
-  m_RootOrder: 1
+  m_Father: {fileID: 3605516872807873127}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &2947688023856306883
 LineRenderer:

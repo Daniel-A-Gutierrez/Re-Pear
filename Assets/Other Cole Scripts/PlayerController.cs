@@ -47,32 +47,45 @@ public class PlayerController : MonoBehaviour
         angle *= Time.fixedDeltaTime / speed * sign;
         transform.Rotate(0.0f, 0.0f, angle);
         */
-       
+
+        //  inputDirection = new Vector2(
+        //     Input.GetAxis("Horizontal"),
+        //     Input.GetAxis("Vertical")
+        // ).normalized;
+
+
+
+        // // If buttons are pressed, accelerate
+        // if (inputDirection.magnitude > 0.0) {
+        //     timer += Time.fixedDeltaTime/startTime;
+        //     timer = Mathf.Min(1.0f, timer);
+        //     rigidBody.MovePosition( rigidBody.position + Vector2.Lerp(Vector2.zero, inputDirection * speed, timer) * Time.fixedDeltaTime);
+        
+
+        // // Otherwise deccelerate
+        // } else {
+        //     timer -= Time.fixedDeltaTime/stopTime;
+        //     timer = Mathf.Max(0.0f, timer );
+        //     rigidBody.MovePosition( rigidBody.position + Vector2.Lerp(rigidBody.velocity, Vector2.zero, 1-timer)* Time.fixedDeltaTime);
+        // }
+
+        inputDirection = (Vector2.right * (Input.GetKey(KeyCode.D) ? 1: 0) +
+                         Vector2.left * (Input.GetKey(KeyCode.A) ? 1: 0) +
+                         Vector2.up * (Input.GetKey(KeyCode.W) ? 1: 0) +
+                         Vector2.down  * (Input.GetKey(KeyCode.S) ? 1: 0) ).normalized; 
+
+        rigidBody.MovePosition(rigidBody.position + inputDirection*speed*Time.fixedDeltaTime);
     }
+    
 
     void Update()
     {
-         Vector3 campoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 campoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         campoint.z = 0;
         transform.up = (campoint -transform.position).normalized;
 
 
-        inputDirection = new Vector2(
-            Input.GetAxis("Horizontal"),
-            Input.GetAxis("Vertical")
-        ).normalized;
-
-        // If buttons are pressed, accelerate
-        if (inputDirection.magnitude > 0.0) {
-            timer = Mathf.Min(1.0f, timer + Time.fixedDeltaTime / startTime);
-            rigidBody.velocity = Vector2.Lerp(Vector2.zero, inputDirection * speed, timer);
-
-        // Otherwise deccelerate
-        } else {
-            timer = Mathf.Max(0.0f, timer - Time.fixedDeltaTime / stopTime);
-            rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, Vector2.zero, 1-timer);
-        }
-
+       
         if(Time.time - lastShotTime> fireInterval && Input.GetKey(KeyCode.Space))
         {
             Shoot();
@@ -98,16 +111,19 @@ public class PlayerController : MonoBehaviour
     //these functions are called by the probe 
     public void Pickup(GameObject g)
     {
-        transform.Find("Tractor Beam").gameObject.SetActive(true);
+        transform.Find("Tractor Beam Left").gameObject.SetActive(true);
+        transform.Find("Tractor Beam Right").gameObject.SetActive(true);
         inventory = g;
         g.transform.parent = transform.Find("Attach Point");
+        g.transform.localPosition = Vector3.zero;
     }
 
     public void Drop()
     {
         inventory.transform.parent = null;
         inventory = null;
-        transform.Find("Tractor Beam").gameObject.SetActive(false);
+        transform.Find("Tractor Beam Left").gameObject.SetActive(false);
+        transform.Find("Tractor Beam Right").gameObject.SetActive(false);
     }
 
 
