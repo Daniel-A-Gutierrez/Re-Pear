@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBullet : Bullet
 {   
-    Animator animator;
+    public Animator animator;
     new Rigidbody2D rigidbody;
     private bool terminating = false;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = direction * speed;
     }
@@ -26,7 +24,6 @@ public class EnemyBullet : Bullet
 
     void OnEnable()
     {
-        animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = direction*speed;
         animator.SetTrigger("OnAwake");
