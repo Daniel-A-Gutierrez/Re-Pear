@@ -67,8 +67,8 @@ public class Station : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RotationRadius();
     }
-
 
 
     ///<summary>PASS IN A PREFAB, NOT AN INSTANTIATED OBJECT. Use tilemap pos x and y </summary>
@@ -164,6 +164,30 @@ public class Station : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+
+    float lastCalcTime;
+    float lastResult; //buffering this to make sure its not a perf. drain
+    public float RotationRadius()
+    {
+        if(Time.time - lastCalcTime < 1f && Time.time > 1f)
+            return lastResult;
+
+        lastCalcTime = Time.time;
+        lastResult = 0;
+        for(int i = 0 ; i < halfSideLength*2; i++)
+        {
+            for(int q = 0 ; q < halfSideLength * 2; q++)
+            {
+                if(tiles[i,q] != null)
+                {
+                    Vector2Int tilemapPos = ArrayPosToTilemapPos(i,q);
+                    lastResult = Mathf.Max( TilemapPosToLocalPos( tilemapPos.x,tilemapPos.y).magnitude , lastResult );
+                }
+            }
+        }
+        return lastResult;
     }
 
 
