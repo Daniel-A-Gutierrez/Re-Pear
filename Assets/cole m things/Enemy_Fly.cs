@@ -25,7 +25,9 @@ public class Enemy_Fly : MonoBehaviour
 
     public float rotationOffset;
     public float rotationRadius;
-
+    private float nextCollision;
+    private float lastCollision;
+    private float collisionDelay;
 
 
     // Start is called before the first frame update
@@ -41,7 +43,7 @@ public class Enemy_Fly : MonoBehaviour
         flyTransform = fly.GetComponent<Transform>();
 
         rotating = false;
-        
+        collisionDelay = 2;
     }
 
     ///<summary>Update is called once per frame</summary> 
@@ -80,7 +82,7 @@ public class Enemy_Fly : MonoBehaviour
         if (rotating)
         {
             //rotate around, start the dive at a fixed time
-            fly.GetComponent<Transform>().RotateAround(stationCore.position, stationCore.forward, 1);
+            fly.GetComponent<Transform>().RotateAround(stationCore.position, stationCore.forward, 0.5f);
             if (Time.time >= minNextDive + lastDive)
             {
                 rotating = false;
@@ -91,13 +93,16 @@ public class Enemy_Fly : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject toDestroy = collision.gameObject;
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Station"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Station") && Time.time >= nextCollision)
         {
             print("bonk");
             //tell the fly to retreat out to the rotation circle
             retreating = true;
             lastDive = Time.time;
             flyTransform.up *= -1;
+
+            lastCollision = Time.time;
+            nextCollision = lastCollision + collisionDelay;
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))

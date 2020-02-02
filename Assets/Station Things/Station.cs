@@ -28,8 +28,8 @@ public class Station : MonoBehaviour
     [Range(3,24)]
     public int halfSideLength;
 
-    public int health = 5;
-    private int startHealth;
+    public float health = 5;
+    private float startHealth;
 
     private SpriteRenderer spriteRenderer;
 
@@ -249,8 +249,26 @@ public class Station : MonoBehaviour
             return new Vector2Int(x + halfSideLength, y + halfSideLength);
         }
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject bullet = collision.gameObject;
+        if (bullet.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet") || bullet.gameObject.layer == LayerMask.NameToLayer("Ant"))
+        {
+            takeDamage(1);
+        }
+
+    }
+
+    public void takeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
-    
+
 }
