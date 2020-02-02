@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBullets : MonoBehaviour, IFireable
+public class SpawnBullet : MonoBehaviour, IFireable
 {
     public GameObject bullet;
 

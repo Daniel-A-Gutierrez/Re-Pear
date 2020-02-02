@@ -585,7 +585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6512491998966558766}
-  - component: {fileID: 5820240396563322723}
+  - component: {fileID: 1485527985099619703}
   m_Layer: 0
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
@@ -607,7 +607,7 @@ Transform:
   m_Father: {fileID: 3605516872807873127}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5820240396563322723
+--- !u!114 &1485527985099619703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -616,6 +616,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8621784602403603850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66ac911c22dd14149af95b1cb7ea782a, type: 3}
+  m_Script: {fileID: 11500000, guid: bd9914c7098e24e0a8a804f91736804f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
