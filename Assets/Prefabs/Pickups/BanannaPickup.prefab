@@ -7,6 +7,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4297709729211525861, guid: 6b359b8749e3340f1ae316c26e1bc435,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98ae67734bd7a4156ba02620b41bbd0a,
+        type: 3}
+    - target: {fileID: 6738931948178514816, guid: 6b359b8749e3340f1ae316c26e1bc435,
+        type: 3}
+      propertyPath: defaultSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98ae67734bd7a4156ba02620b41bbd0a,
+        type: 3}
+    - target: {fileID: 6738931948178514816, guid: 6b359b8749e3340f1ae316c26e1bc435,
+        type: 3}
+      propertyPath: hilightSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 66bb60043be164750bb0a1026cd7c2ba,
+        type: 3}
+    - target: {fileID: 6738931948178514816, guid: 6b359b8749e3340f1ae316c26e1bc435,
+        type: 3}
+      propertyPath: tile
+      value: 
+      objectReference: {fileID: 5806429556193152216, guid: bd8707dcee54c46d6b6d253f85c82f46,
+        type: 3}
     - target: {fileID: 6738931948178514818, guid: 6b359b8749e3340f1ae316c26e1bc435,
         type: 3}
       propertyPath: m_Name

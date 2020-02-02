@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52db6ca8ef17fa449c1829c90f70a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlight: {fileID: 0}
+  highlight: {fileID: 3682178198426523132, guid: 646ff7808842b4c17b583646103727f8,
+    type: 3}
   debugSphere: {fileID: 6802801391296719367, guid: 73eecf0b90f01f84c88c0e07379666b4,
     type: 3}
   startingTiles:

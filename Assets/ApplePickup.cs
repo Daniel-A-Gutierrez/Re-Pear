@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class ApplePickup : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
-    {        
+    public Sprite defaultSprite;
+    public Sprite hilightSprite;
+    
+    public override void Highlight(PlayerController player){
+        GetComponent<SpriteRenderer>().sprite = hilightSprite;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void UnHighlight(PlayerController player){
+        GetComponent<SpriteRenderer>().sprite = defaultSprite;
     }
 
     public override void Use(PlayerController player)
