@@ -192,7 +192,7 @@ public class SpawnManager : MonoBehaviour
             for (int i = 0; i < numToSpawn; i++)
             {
                 GameObject newFly = Instantiate(flyPrefab, usingSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
-                newFly.GetComponent<Enemy_Ant>().setStationCore(core.GetComponent<Transform>());
+                newFly.GetComponent<Enemy_Fly>().setStationCore(core.GetComponent<Transform>());
             }
         }
 
