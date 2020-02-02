@@ -32,71 +32,61 @@ public class PlayerController : MonoBehaviour
     {    
 
         
+        inputDirection = new Vector2(
+            Input.GetAxis("Horizontal"),
+            Input.GetAxis("Vertical")
+        ).normalized;
+        
 
-        /* currently buggy , taking an impulse sends the player spinning forever
+        //currently buggy , taking an impulse sends the player spinning forever
         // Convert input to a direction vector
         
 
         // Get the angle between the current direction and the velocity direction
-        float angle = Vector3.Angle(transform.up, rigidBody.velocity);
+        // float angle = Vector3.Angle(transform.up, rigidBody.velocity);
 
-        // We multiply by the sign of the cross product to use the closest direction
-        float sign = Mathf.Sign(Vector3.Cross(transform.up, rigidBody.velocity).z);
+        // // We multiply by the sign of the cross product to use the closest direction
+        // float sign = Mathf.Sign(Vector3.Cross(transform.up, rigidBody.velocity).z);
 
-        // Apply the rotation over time
-        angle *= Time.fixedDeltaTime / speed * sign;
-        transform.Rotate(0.0f, 0.0f, angle);
-        */
+        // // Apply the rotation over time
+        // angle *= Time.fixedDeltaTime / speed * sign;
+        // transform.Rotate(0.0f, 0.0f, angle);
+        if (inputDirection.magnitude > 0.0) {
+            transform.up = inputDirection;
+        }
 
-        //  inputDirection = new Vector2(
-        //     Input.GetAxis("Horizontal"),
-        //     Input.GetAxis("Vertical")
-        // ).normalized;
+        // If buttons are pressed, accelerate
+        if (inputDirection.magnitude > 0.0) {
+            timer += Time.fixedDeltaTime/startTime;
+            timer = Mathf.Max(1.0f, timer);
+            // rigidBody.MovePosition( rigidBody.position + Vector2.Lerp(Vector2.zero, inputDirection * speed, timer) * Time.fixedDeltaTime);
+            rigidBody.velocity = Vector2.Lerp(Vector2.zero, inputDirection * speed, timer);
+            // rigidBody.velocity = inputDirection * speed;
 
+        // Otherwise deccelerate
+        } else {
+            timer -= Time.fixedDeltaTime/stopTime;
+            timer = Mathf.Max(0.0f, timer);
+            // rigidBody.MovePosition( rigidBody.position + Vector2.Lerp(rigidBody.velocity, Vector2.zero, 1-timer)* Time.fixedDeltaTime);
+            rigidBody.velocity = Vector2.Lerp(inputDirection * speed, Vector2.zero, 1-timer);
+            // rigidBody.velocity = Vector2.zero;
+        }
 
-
-        // // If buttons are pressed, accelerate
-        // if (inputDirection.magnitude > 0.0) {
-        //     timer += Time.fixedDeltaTime/startTime;
-        //     timer = Mathf.Min(1.0f, timer);
-        //     rigidBody.MovePosition( rigidBody.position + Vector2.Lerp(Vector2.zero, inputDirection * speed, timer) * Time.fixedDeltaTime);
+        // inputDirection = (Vector2.right * (Input.GetKey(KeyCode.D) ? 1: 0) +
+        //                  Vector2.left * (Input.GetKey(KeyCode.A) ? 1: 0) +
+        //                  Vector2.up * (Input.GetKey(KeyCode.W) ? 1: 0) +
+        //                  Vector2.down  * (Input.GetKey(KeyCode.S) ? 1: 0) ).normalized; 
         
-
-        // // Otherwise deccelerate
-        // } else {
-        //     timer -= Time.fixedDeltaTime/stopTime;
-        //     timer = Mathf.Max(0.0f, timer );
-        //     rigidBody.MovePosition( rigidBody.position + Vector2.Lerp(rigidBody.velocity, Vector2.zero, 1-timer)* Time.fixedDeltaTime);
-        // }
-
-        inputDirection = (Vector2.right * (Input.GetKey(KeyCode.D) ? 1: 0) +
-                         Vector2.left * (Input.GetKey(KeyCode.A) ? 1: 0) +
-                         Vector2.up * (Input.GetKey(KeyCode.W) ? 1: 0) +
-                         Vector2.down  * (Input.GetKey(KeyCode.S) ? 1: 0) ).normalized; 
-        
-        rigidBody.MovePosition(rigidBody.position + inputDirection*speed*Time.fixedDeltaTime);
+        // rigidBody.MovePosition(rigidBody.position + inputDirection*speed*Time.fixedDeltaTime);
     }
     
 
     void Update()
     {
 
-
-        // inputDirection = (Vector2.right * (Input.GetKey(KeyCode.D) ? 1: 0) +
-        //                  Vector2.left * (Input.GetKey(KeyCode.A) ? 1: 0) +
-        //                  Vector2.up * (Input.GetKey(KeyCode.W) ? 1: 0) +
-        //                  Vector2.down  * (Input.GetKey(KeyCode.S) ? 1: 0) ).normalized; 
-
-        // Vector2 vel = inputDirection*speed*Time.deltaTime;
-        // transform.position = new Vector3 (
-        //     transform.position.x + vel.x,
-        //     transform.position.y + vel.y,
-        //     transform.position.z
-        // );
-
-        Vector3 campoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        campoint.z = 0;
-        transform.up = (campoint -transform.position).normalized;
+        // Vector3 campoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // campoint.z = 0;
+        // transform.up = (campoint -transform.position).normalized;
 
 
        
