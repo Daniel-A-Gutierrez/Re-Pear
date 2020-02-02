@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public AudioSource BeamSound, BeamDrop, AttachSound;
     private Rigidbody2D rigidBody;
     Vector2 inputDirection;
 
@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(inventory==null)
                 {
+                    BeamSound.Play();
                     use.selecting.GetComponent<Interactable>().Use(this);
                 }
             }
@@ -116,8 +117,9 @@ public class PlayerController : MonoBehaviour
             {
                 if(inventory!=null)
                 {
-                    use.selecting.GetComponent<Interactable>().Use(this);
-                    DropAndDestroy();
+                    AttachSound.Play();
+                    use.selecting.GetComponent<Interactable>().Use(this); //FIXME: tile might not show due to destruction
+                    
                 }
             }
             //do a thing
@@ -125,6 +127,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Q) && inventory!=null)//drop stuff when u press q
         {
+            BeamDrop.Play();
             Drop();
         }
         

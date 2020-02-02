@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
         transform.position = Vector3.zero;
 
+        nextSpawnTime = Time.time + minNextSpawnTime + Random.Range(0, randSpawnTimeRange);
     }
     // Start is called before the first frame update
     void Start()

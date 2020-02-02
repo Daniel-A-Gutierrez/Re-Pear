@@ -45,6 +45,7 @@ public class TileSelector : Interactable
         {
             //get tile from player to spawn. 
             station.AddTile(tilemapPosition.x,tilemapPosition.y,player.GetTile());
+            player.DropAndDestroy();
             //i should get a corresponding tile
             //
             //GetComponent<LineRenderer>().enabled = true;
