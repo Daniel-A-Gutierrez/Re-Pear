@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 1538559383}
   - component: {fileID: 1538559382}
   - component: {fileID: 1538559384}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: plaeholder_ant
   m_TagString: StationArmor
   m_Icon: {fileID: 0}

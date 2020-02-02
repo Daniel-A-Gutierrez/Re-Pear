@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2249262286487667280}
   - component: {fileID: 2249262286487667283}
   - component: {fileID: 2249262286487667282}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2249262286487667282
 BoxCollider2D:
   m_ObjectHideFlags: 0

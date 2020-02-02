@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4538965938106426719}
   - component: {fileID: 4538965938106426718}
   - component: {fileID: 3876799846811132013}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: stinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
