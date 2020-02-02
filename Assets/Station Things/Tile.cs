@@ -2,15 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class Tile : MonoBehaviour
 {
     public int hp;
+    public int halfHp = 1;
     public GameObject emplacement;
     public string damagingTag;
+
+    public Sprite defaultSprite;
+    public Sprite damagedSprite;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        animator = gameObject.GetComponent<Animator>();
+        if (defaultSprite != null) {
+            spriteRenderer.sprite = defaultSprite;
+        }
     }
 
     // Update is called once per frame
@@ -35,6 +49,14 @@ public class Tile : MonoBehaviour
     void Damage(int amount)
     {
         hp -= amount;
+
+        animator.SetTrigger("OnHit");
+        if (hp <= halfHp) {
+            if (damagedSprite != null) {
+                spriteRenderer.sprite = damagedSprite;
+            }
+        }
+
         if(hp<=0)
         {
             Die();
