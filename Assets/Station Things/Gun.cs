@@ -8,10 +8,11 @@ public class Gun : MonoBehaviour
     public LayerMask enemyLayers;
     public int scanInterval = 2;
     int scanTicker = 0;
-    public float range = 5f;
+    public float bulletLife = 3f;
     Transform currentTarget = null;
     public float fireRate = 1f;
     float fireInterval;
+    float lastShotTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,27 +22,24 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentTarget != null)
+        if(Time.time - lastShotTime > fireInterval )
         {
-            Shoot();
-        }
-        else 
-        {
-            if(targets == 0){/*nothing to shoot at */}
-            else
+            SetTarget();
+            if(currentTarget != null)
             {
-                SetTarget();
-                if(currentTarget!=null)
-                    Shoot();
+                Shoot();
             }
         }
-         
     }
 
     void Shoot()
     {
-        //GameManager.StationFire(position,direction,range)
-        
+        transform.up = (currentTarget.position-transform.position).normalized;
+        lastShotTime = Time.time;
+        GameManager.instance.StationShoot( (transform.position +
+             (currentTarget.position-transform.position).normalized * .25f ),
+             (currentTarget.position-transform.position).normalized,
+             bulletLife);
     }
 
     void FixedUpdate()
@@ -50,7 +48,9 @@ public class Gun : MonoBehaviour
         if(scanTicker>=scanInterval)
         {
             scanTicker = 0;
-            ScanEnemies(transform.position,range,enemyLayers);
+            ScanEnemies(transform.position,bulletLife,enemyLayers);
+            SetTarget();
+
         }
     }
 
@@ -84,6 +84,10 @@ public class Gun : MonoBehaviour
         // c.layerMask = checkLayers;
         // c.useLayerMask = true;
         targets = Physics2D.OverlapCircleNonAlloc(center ,radius ,enemies,checkLayers) ;
+        for(int i = targets;i<enemies.Length;i++)
+        {
+            enemies[i] = null;
+        }
         return enemies;
     }
 

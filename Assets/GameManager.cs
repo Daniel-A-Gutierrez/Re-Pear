@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     Queue<GameObject> ants;
     public GameObject wasp;
     Queue<GameObject> wasps;
-    GameManager instance ;
+    public static GameManager instance;
 
     void Awake()
     {
@@ -34,30 +34,89 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void StationShoot(Vector3 position, Vector3 direction, float range)
+    public void StationShoot(Vector3 position, Vector3 direction, float lifetime)
     {
         if(stationBullets.Count == 0)
         {
             GameObject bullet = Instantiate(stationBullet,position,Quaternion.identity ,transform);
             bullet.transform.up = direction.normalized;
             bullet.GetComponent<Bullet>().direction = direction;
-            bullet.GetComponent<Bullet>().range = range;
-            bullet.GetComponent<Bullet>().startingPosition = position;
+            bullet.GetComponent<Bullet>().lifetime = lifetime;
+            bullet.GetComponent<Bullet>().birthTime = Time.time;
+        }
+        else
+        {
+            GameObject bullet = stationBullets.Dequeue();
+            bullet.SetActive( true );
+            bullet.transform.up = direction.normalized;
+            bullet.transform.position = position;
+            bullet.GetComponent<Bullet>().direction = direction;
+            bullet.GetComponent<Bullet>().lifetime = lifetime;
+            bullet.GetComponent<Bullet>().birthTime = Time.time;
+        }
+    }
+
+    public void TerminateStationBullet(GameObject bullet)
+    {
+        bullet.SetActive(false);
+        stationBullets.Enqueue(bullet);
+    }
+
+    public void EnemyShoot(Vector3 position, Vector3 direction, float lifetime)
+    {
+        if(stationBullets.Count == 0)
+        {
+            GameObject bullet = Instantiate(enemyBullet,position,Quaternion.identity ,transform);
+            bullet.transform.up = direction.normalized;
+            bullet.GetComponent<Bullet>().direction = direction;
+            bullet.GetComponent<Bullet>().lifetime = lifetime;
+            bullet.GetComponent<Bullet>().birthTime = Time.time;
         }
         else
         {
             GameObject bullet = enemyBullets.Dequeue();
             bullet.SetActive( true );
             bullet.transform.up = direction.normalized;
+            bullet.transform.position = position;
             bullet.GetComponent<Bullet>().direction = direction;
-            bullet.GetComponent<Bullet>().range = range;
-            bullet.GetComponent<Bullet>().startingPosition = position;
+            bullet.GetComponent<Bullet>().lifetime = lifetime;
+            bullet.GetComponent<Bullet>().birthTime = Time.time;
         }
     }
 
-    void TerminateStationBullet(GameObject bullet)
+    public void TerminateEnemyBullet(GameObject bullet)
+    {
+        bullet.SetActive(false);
+        enemyBullets.Enqueue(bullet);
+    }
+
+    public void PlayerShoot(Vector3 position, Vector3 direction, float lifetime)
+    {
+        if(playerBullets.Count == 0)
+        {
+            GameObject bullet = Instantiate(playerBullet,position,Quaternion.identity ,transform);
+            bullet.transform.up = direction.normalized;
+            bullet.GetComponent<Bullet>().direction = direction;
+            bullet.GetComponent<Bullet>().lifetime = lifetime;
+            bullet.GetComponent<Bullet>().birthTime = Time.time;
+        }
+        else
+        {
+            GameObject bullet = playerBullets.Dequeue();
+            bullet.SetActive( true );
+            bullet.transform.up = direction.normalized;
+            bullet.transform.position = position;
+            bullet.GetComponent<Bullet>().direction = direction;
+            bullet.GetComponent<Bullet>().lifetime = lifetime;
+            bullet.GetComponent<Bullet>().birthTime = Time.time;
+        }
+    }
+
+    public void TerminatePlayerBullet(GameObject bullet)
     {
         bullet.SetActive(false);
         stationBullets.Enqueue(bullet);
     }
+
+
 }
