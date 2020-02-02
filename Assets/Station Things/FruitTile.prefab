@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6283697734598373741}
   - component: {fileID: 3764650148301186047}
   - component: {fileID: 6859317982968725775}
+  - component: {fileID: 443281479872958152}
   m_Layer: 0
   m_Name: FruitTile
   m_TagString: Untagged
@@ -52,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2c6076822a5cb4e11b1d81616ee4feba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,5 +145,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 2
+  halfHp: 1
   emplacement: {fileID: 0}
   damagingTag: 
+  defaultSprite: {fileID: 21300000, guid: 6ecd3eb05b7932b47bbbb9eee829b078, type: 3}
+  damagedSprite: {fileID: 21300000, guid: a7fb330f7a891454190a15eae5cb3197, type: 3}
+--- !u!95 &443281479872958152
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791620608707857203}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87ab471ff3dda4f85bab3ee8b3952686, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

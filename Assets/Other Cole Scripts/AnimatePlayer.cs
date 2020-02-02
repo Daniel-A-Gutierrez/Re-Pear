@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatePlayer : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public class AnimatePlayer : MonoBehaviour, IFireable
 {
-    // Start is called before the first frame update
+    Animator animator;
+
     void Start()
     {
-        
+        animator = gameObject.GetComponent<Animator>();   
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnFire()
     {
-        
+        animator.SetTrigger("OnFire");
     }
 }
