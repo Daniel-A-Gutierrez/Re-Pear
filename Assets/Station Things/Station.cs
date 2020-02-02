@@ -28,6 +28,11 @@ public class Station : MonoBehaviour
     [Range(3,24)]
     public int halfSideLength;
 
+    public int health = 5;
+    private int startHealth;
+
+    private SpriteRenderer spriteRenderer;
+
     void Awake()
     {
         tiles = new GameObject[halfSideLength*2,halfSideLength*2];
@@ -41,6 +46,9 @@ public class Station : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        startHealth = health;
+
         for(int i = 0 ; i  <halfSideLength*2 ; i++)
         {
             for(int q = 0 ; q < halfSideLength*2; q++)
@@ -68,6 +76,7 @@ public class Station : MonoBehaviour
     void Update()
     {
         RotationRadius();
+        spriteRenderer.material.SetFloat("_Blend", 1 - (float)health / (float)startHealth);
     }
 
 
