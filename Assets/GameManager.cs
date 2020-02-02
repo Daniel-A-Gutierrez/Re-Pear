@@ -64,25 +64,29 @@ public class GameManager : MonoBehaviour
         {
             GameObject bullet = Instantiate(stationBullet,position,Quaternion.identity ,transform);
             bullet.transform.up = direction.normalized;
-            bullet.GetComponent<Bullet>().direction = direction;
+            bullet.GetComponent<Bullet>().direction = direction.normalized;
             bullet.GetComponent<Bullet>().lifetime = lifetime;
             bullet.GetComponent<Bullet>().birthTime = Time.time;
         }
         else
         {
             GameObject bullet = stationBullets.Dequeue();
-            bullet.SetActive( true );
+            bullet.GetComponent<Rigidbody2D>().constraints=RigidbodyConstraints2D.None;
             bullet.transform.up = direction.normalized;
+            bullet.GetComponent<Rigidbody2D>().constraints=RigidbodyConstraints2D.FreezeRotation;
             bullet.transform.position = position;
-            bullet.GetComponent<Bullet>().direction = direction;
+            bullet.GetComponent<Bullet>().direction = direction.normalized;
             bullet.GetComponent<Bullet>().lifetime = lifetime;
             bullet.GetComponent<Bullet>().birthTime = Time.time;
+            bullet.SetActive( true );
         }
     }
 
     public void TerminateStationBullet(GameObject bullet)
     {
-        bullet.SetActive(false);
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        bullet.GetComponent<Rigidbody2D>().SetRotation(0);
+        bullet.SetActive(false); 
         stationBullets.Enqueue(bullet);
     }
 
@@ -99,17 +103,19 @@ public class GameManager : MonoBehaviour
         else
         {
             GameObject bullet = enemyBullets.Dequeue();
-            bullet.SetActive( true );
             bullet.transform.up = direction.normalized;
             bullet.transform.position = position;
             bullet.GetComponent<Bullet>().direction = direction;
             bullet.GetComponent<Bullet>().lifetime = lifetime;
             bullet.GetComponent<Bullet>().birthTime = Time.time;
+            bullet.SetActive( true );
         }
     }
 
     public void TerminateEnemyBullet(GameObject bullet)
     {
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        bullet.GetComponent<Rigidbody2D>().SetRotation(0);
         bullet.SetActive(false);
         enemyBullets.Enqueue(bullet);
     }
@@ -127,19 +133,21 @@ public class GameManager : MonoBehaviour
         else
         {
             GameObject bullet = playerBullets.Dequeue();
-            bullet.SetActive( true );
             bullet.transform.up = direction.normalized;
             bullet.transform.position = position;
             bullet.GetComponent<Bullet>().direction = direction;
             bullet.GetComponent<Bullet>().lifetime = lifetime;
             bullet.GetComponent<Bullet>().birthTime = Time.time;
+            bullet.SetActive( true );
         }
     }
 
     public void TerminatePlayerBullet(GameObject bullet)
     {
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        bullet.GetComponent<Rigidbody2D>().SetRotation(0);
         bullet.SetActive(false);
-        stationBullets.Enqueue(bullet);
+        playerBullets.Enqueue(bullet);
     }
 
 

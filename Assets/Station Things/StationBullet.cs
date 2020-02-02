@@ -8,14 +8,14 @@ using UnityEngine;
 public class StationBullet : Bullet
 {   
     Animator animator;
-    Rigidbody2D rigidbody;
+    new Rigidbody2D rigidbody;
     private bool terminating = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = direction * speed;
+        rigidbody.velocity = transform.up * speed;
     }
 
     void Update()
@@ -28,7 +28,7 @@ public class StationBullet : Bullet
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = direction*speed;
+        rigidbody.velocity = transform.up*speed;
         animator.SetTrigger("OnAwake");
     }
 
