@@ -5,6 +5,8 @@ Shader "Sprites/Flash"
 	Properties
 	{
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
+		_Highlight ("Highlight Texture", 2D) = "black" {}
+		_HighlightScale ("Highlight Scale", Float) = 0.2
 		_Color ("Tint", Color) = (1,1,1,1)
 		_Flash ("Flash", Range (0.0, 1.0)) = 1.0
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
@@ -70,12 +72,21 @@ Shader "Sprites/Flash"
 
             float _Flash;
 			sampler2D _MainTex;
+			sampler2D _Highlight;
 			sampler2D _AlphaTex;
+			float _HighlightScale;
 			float _AlphaSplitEnabled;
 
 			fixed4 SampleSpriteTexture (float2 uv)
 			{
 				fixed4 color = tex2D (_MainTex, uv);
+				fixed4 colorHi = tex2D (_Highlight, uv);
+				colorHi *= _HighlightScale;
+				float colorMask = (1 - (color.a * colorHi.a));
+				float colorHiMask = color.a;
+
+				color = color * colorMask + colorHi.a;
+
 
 #if UNITY_TEXTURE_ALPHASPLIT_ALLOWED
 				if (_AlphaSplitEnabled)
