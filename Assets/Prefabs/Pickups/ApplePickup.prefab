@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb0956f40698e644a1a9c43e11fa1b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topickup: 1
+  tile: {fileID: 8113987209614090062, guid: eeeb17f3a6aa946db893ce8138c6503c, type: 3}
+  defaultSprite: {fileID: 21300000, guid: 44a59d4dda44b44c2a1ba606e1062fc2, type: 3}
+  hilightSprite: {fileID: 21300000, guid: 0f9d32fbf4a334eabaf00438d51c597a, type: 3}
 --- !u!58 &6738931948178514817
 CircleCollider2D:
   m_ObjectHideFlags: 0
