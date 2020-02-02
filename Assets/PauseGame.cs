@@ -7,22 +7,28 @@ public class PauseGame : MonoBehaviour
     
     public KeyCode key = KeyCode.P;
     public bool paused = false;
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer[] spriteRenderers;
 
     void Start() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.enabled = false;
+        // spriteRenderer = GetComponent<SpriteRenderer>();
+        foreach (SpriteRenderer renderer in spriteRenderers) {
+            renderer.enabled = false;
+        }
     }
 
     void Update()
     {
         if (Input.GetKeyDown(key) && !paused) {
             paused = true;
-            spriteRenderer.enabled = true;
+            foreach (SpriteRenderer renderer in spriteRenderers) {
+                renderer.enabled = true;
+            }
             Time.timeScale = 0.0f;
         } else if (Input.GetKeyDown(key) && paused) {
             paused = false;
-            spriteRenderer.enabled = false;
+            foreach (SpriteRenderer renderer in spriteRenderers) {
+                renderer.enabled = false;
+            }
             Time.timeScale = 1.0f;
         }
     }
