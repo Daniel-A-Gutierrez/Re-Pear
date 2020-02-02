@@ -106,14 +106,24 @@ public class PlayerController : MonoBehaviour
             if(use.selecting.GetComponent<Interactable>().topickup)
             {
                 if(inventory==null)
+                {
                     use.selecting.GetComponent<Interactable>().Use(this);
+                }
             }
             else // its a placing place
             {
                 if(inventory!=null)
+                {
                     use.selecting.GetComponent<Interactable>().Use(this);
+                    DropAndDestroy();
+                }
             }
             //do a thing
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q) && inventory!=null)//drop stuff when u press q
+        {
+            Drop();
         }
         
     }
@@ -149,6 +159,15 @@ public class PlayerController : MonoBehaviour
         inventory = null;
         transform.Find("Tractor Beam Left").gameObject.SetActive(false);
         transform.Find("Tractor Beam Right").gameObject.SetActive(false);
+    }
+
+    public void DropAndDestroy()
+    {
+        inventory.transform.parent = null;
+        transform.Find("Tractor Beam Left").gameObject.SetActive(false);
+        transform.Find("Tractor Beam Right").gameObject.SetActive(false);
+        Destroy(inventory);
+        inventory = null;
     }
 
     public bool HasTileInInventory()

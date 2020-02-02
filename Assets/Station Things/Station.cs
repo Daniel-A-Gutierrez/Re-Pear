@@ -28,6 +28,11 @@ public class Station : MonoBehaviour
     [Range(3,24)]
     public int halfSideLength;
 
+    public int health = 5;
+    private int startHealth;
+
+    private SpriteRenderer spriteRenderer;
+
     void Awake()
     {
         tiles = new GameObject[halfSideLength*2,halfSideLength*2];
@@ -41,6 +46,9 @@ public class Station : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        startHealth = health;
+
         for(int i = 0 ; i  <halfSideLength*2 ; i++)
         {
             for(int q = 0 ; q < halfSideLength*2; q++)
@@ -67,8 +75,9 @@ public class Station : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RotationRadius();
+        spriteRenderer.material.SetFloat("_Blend", 1 - (float)health / (float)startHealth);
     }
-
 
 
     ///<summary>PASS IN A PREFAB, NOT AN INSTANTIATED OBJECT. Use tilemap pos x and y </summary>
@@ -164,6 +173,30 @@ public class Station : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+
+    float lastCalcTime;
+    float lastResult; //buffering this to make sure its not a perf. drain
+    public float RotationRadius()
+    {
+        if(Time.time - lastCalcTime < 1f && Time.time > 1f)
+            return lastResult;
+
+        lastCalcTime = Time.time;
+        lastResult = 0;
+        for(int i = 0 ; i < halfSideLength*2; i++)
+        {
+            for(int q = 0 ; q < halfSideLength * 2; q++)
+            {
+                if(tiles[i,q] != null)
+                {
+                    Vector2Int tilemapPos = ArrayPosToTilemapPos(i,q);
+                    lastResult = Mathf.Max( TilemapPosToLocalPos( tilemapPos.x,tilemapPos.y).magnitude , lastResult );
+                }
+            }
+        }
+        return lastResult;
     }
 
 
