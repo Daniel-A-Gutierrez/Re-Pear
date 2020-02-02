@@ -55,7 +55,7 @@ public class JunkSpawner : MonoBehaviour
             }
 
             nextSpawnTime = Time.time + minNextSpawnTime + Random.Range(0, randSpawnTimeRange);
-            print(Time.time + " :: " + nextSpawnTime);
+            //print(Time.time + " :: " + nextSpawnTime);
         }
     }
 

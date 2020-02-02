@@ -14,7 +14,18 @@ public class GameManager : MonoBehaviour
     Queue<GameObject> ants;
     public GameObject wasp;
     Queue<GameObject> wasps;
+    public GameObject fly;
+    Queue<GameObject> fliess;
     public static GameManager instance;
+
+    public GameObject managers;
+
+    //these handle the enemy spawn times, ranges, etc (it's a little random)
+    public float randSpawnTimeRange;
+    public float minNextSpawnTime;
+    private float nextSpawnTime;
+    private float lastSpawnTime;
+
 
     void Awake()
     {
@@ -24,6 +35,7 @@ public class GameManager : MonoBehaviour
         enemyBullets = new Queue<GameObject>();
 
         transform.position = Vector3.zero;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -34,7 +46,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //the junk spawning is working independently from here and is accessible in the the main scene
+        //why? I don't know, not the cleanest way to do it but it's 12pm and I need to hurry
+        //spawning loop
+        //won't spanw enemies at level 0
+        if (managers.GetComponent<LevelManager>().getLevel() == 0 && Time.time >= nextSpawnTime)
+        {
+            managers.GetComponent<SpawnManager>().spawnAt(managers.GetComponent<LevelManager>().getLevel());
+            nextSpawnTime = Time.time + minNextSpawnTime + Random.Range(0, randSpawnTimeRange);          
+        }
     }
 
     public void StationShoot(Vector3 position, Vector3 direction, float lifetime)

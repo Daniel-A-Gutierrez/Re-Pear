@@ -49,5 +49,9 @@ MonoBehaviour:
     type: 3}
   enemyBullet: {fileID: 7356367746587157296, guid: f3aa5f1700ce427418e81544b2a1f650,
     type: 3}
-  ant: {fileID: 0}
-  wasp: {fileID: 0}
+  ant: {fileID: 2249262286487667285, guid: 8b5b06fc3fe8b614da697ff0531b1dcd, type: 3}
+  wasp: {fileID: 6652181430624104209, guid: d229652799968bb4c9e3c14a7f98474f, type: 3}
+  fly: {fileID: 5842899653756911873, guid: b20c2e1a7089d9f46b0b844848b47d15, type: 3}
+  managers: {fileID: 717378462795459654, guid: 3c228701e87dae94aae7c4cc818a4fdf, type: 3}
+  randSpawnTimeRange: 2
+  minNextSpawnTime: 2

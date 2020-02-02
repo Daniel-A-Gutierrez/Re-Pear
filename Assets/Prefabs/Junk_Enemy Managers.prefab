@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &717378462795459654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717378462795459652}
+  - component: {fileID: 717378462795459653}
+  - component: {fileID: 717378462795459651}
+  - component: {fileID: 6521327348972588185}
+  m_Layer: 0
+  m_Name: Junk_Enemy Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &717378462795459652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717378462795459654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.1, y: -0.13112359, z: -19.51493}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &717378462795459653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717378462795459654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fb1cf2380129a4d96b672751fb513a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  core: {fileID: 0}
+  player: {fileID: 0}
+  antPrefab: {fileID: 2249262286487667285, guid: 8b5b06fc3fe8b614da697ff0531b1dcd,
+    type: 3}
+  flyPrefab: {fileID: 5842899653756911873, guid: b20c2e1a7089d9f46b0b844848b47d15,
+    type: 3}
+  waspPrefab: {fileID: 6652181430624104209, guid: d229652799968bb4c9e3c14a7f98474f,
+    type: 3}
+  level0: 0
+--- !u!114 &717378462795459651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717378462795459654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09a2d1f3c180c040b339bffb779a0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appleTile: {fileID: 6878715387412872356, guid: ccaf1609e0c977648b4710a78c185cb7,
+    type: 3}
+  bananaTile: {fileID: 6160785625056622694, guid: 19d861a46f064604fab0cc5708af5740,
+    type: 3}
+  melonTile: {fileID: 291375608473760407, guid: 6f95adc1c87bd33459f65e81809e3314,
+    type: 3}
+  orangeTile: {fileID: 7271470258358265115, guid: 8211d56bf1b1a90439e4c0cad9d23a1b,
+    type: 3}
+  turretTile: {fileID: 9195235764900561684, guid: 331f87053e108964689f60b20b13b9b4,
+    type: 3}
+  tileTypes: 4
+  spawnsPerWave: 3
+  tileSpawnOffseRadiusMax: 1.5
+  initialSpawn0: 0
+  initialSpawn1: 2
+  initialSpawn2: 4
+  initialSpawn3: 6
+  randSpawnTimeRange: 5
+  minNextSpawnTime: 2
+--- !u!114 &6521327348972588185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717378462795459654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04aa5aedd549db44683730eac316d08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

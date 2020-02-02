@@ -13,6 +13,7 @@ public class Enemy_Wasp : MonoBehaviour
     public float rotationRadius;
     public float fireDelay;
     public float stingerSpeed;
+    public float stingerLife;
 
     public Transform stationCore;
     private Rigidbody2D waspBody;
@@ -62,9 +63,7 @@ public class Enemy_Wasp : MonoBehaviour
             if(Time.time > nextFire)
             {
                 nextFire = Time.time + fireDelay;
-                GameObject newStinger = Instantiate(stinger, waspGun.transform.position, waspGun.transform.rotation);
-                Vector2 vel = new Vector2(waspGun.transform.up.x, waspGun.transform.up.y);
-                newStinger.GetComponent<Rigidbody2D>().velocity = vel * stingerSpeed;
+                GameManager.instance.EnemyShoot(waspGun.transform.position, waspGun.transform.up, stingerLife);
             }               
         }
     }

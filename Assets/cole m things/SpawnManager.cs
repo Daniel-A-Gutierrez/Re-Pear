@@ -13,6 +13,8 @@ public class SpawnManager : MonoBehaviour
     private GameObject usingSpawnPoint;
     private int[] possibleEncounters = new int[7];
 
+    public bool level0;
+
     //these codes refer to the rows to pull from in the encounter double array
     private int[] encounterTable = new int[] 
     {0,0,0,1,1,2,2,2,3,3,4,5,5,5,6,6,7,8,8,8,9,9,10,10,11,
@@ -22,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     //the number in the second column represents number OF them
     private int[][] encounters = new int[][]
     {
-        new int[2]{0,1},
+        new int[2]{2,1},
         new int[2]{1,1},
         new int[2]{0,2},
         new int[2]{1,2},
@@ -49,6 +51,7 @@ public class SpawnManager : MonoBehaviour
     void Awake()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("Spawn");
+        level0 = true;
     }
 
     // Update is called once per frame
@@ -56,10 +59,7 @@ public class SpawnManager : MonoBehaviour
     {
         //on a set time interval
        //testing with manual fire, need timer compatability 
-       if(Input.GetButtonDown("Fire1"))
-        {
-            spawnAt(0);
-        }
+       
         
     }
 

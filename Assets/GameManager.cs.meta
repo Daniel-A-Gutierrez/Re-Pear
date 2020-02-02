@@ -3,7 +3,14 @@ guid: 264c318313d43f2468dbd63e9a5fb70d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - stationBullet: {instanceID: 0}
+  - playerBullet: {instanceID: 0}
+  - enemyBullet: {instanceID: 0}
+  - ant: {instanceID: 0}
+  - wasp: {instanceID: 0}
+  - fly: {instanceID: 0}
+  - managers: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

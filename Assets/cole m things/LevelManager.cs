@@ -66,18 +66,18 @@ public class LevelManager : MonoBehaviour
     }
 
     //===getters
-    int getLevel()
+    public int getLevel()
     {
         return currentLevel;
     }
 
-    int getExp()
+    public int getExp()
     {
         return exp;
     }
 
     //use this for ui to show currentExp/Exp for next level
-    int[] getExpPerLevel()
+    public int[] getExpPerLevel()
     {
         return new int[] {exp, (currentLevel + 1) * 4};
     }
