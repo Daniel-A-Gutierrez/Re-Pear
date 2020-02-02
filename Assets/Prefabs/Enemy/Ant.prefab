@@ -101,7 +101,9 @@ MonoBehaviour:
   speedMod: 2
   damage: 0
   ant: {fileID: 2249262286487667285}
+  hp: 0
   stationCore: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: f0b6c5427fc31364da9690807411c77e, type: 3}
 --- !u!50 &2249262286487667283
 Rigidbody2D:
   serializedVersion: 4

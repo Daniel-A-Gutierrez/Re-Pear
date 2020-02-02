@@ -9,6 +9,7 @@ public class Enemy_Fly : MonoBehaviour
     public GameObject fly;
     public float minNextDive;
     public float rotationRadius;
+    public float hp;
 
     public Transform stationCore;
 
@@ -19,7 +20,9 @@ public class Enemy_Fly : MonoBehaviour
     private bool retreating;
 
     private float lastDive;
-    
+
+    public AudioClip deathSound;
+
 
 
     // Start is called before the first frame update
@@ -97,5 +100,16 @@ public class Enemy_Fly : MonoBehaviour
     public void setStationCore(Transform core)
     {
         stationCore = core;
+    }
+
+    public void takeDamage(float amount)
+    {
+        hp -= amount;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+            AudioSource enemySource = new AudioSource();
+            enemySource.PlayOneShot(deathSound);
+        }
     }
 }

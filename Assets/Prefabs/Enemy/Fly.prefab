@@ -17,7 +17,9 @@ MonoBehaviour:
   fly: {fileID: 5842899653756911873}
   minNextDive: 5
   rotationRadius: 3
+  hp: 0
   stationCore: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: f0b6c5427fc31364da9690807411c77e, type: 3}
 --- !u!1001 &5629739669469578068
 PrefabInstance:
   m_ObjectHideFlags: 0
