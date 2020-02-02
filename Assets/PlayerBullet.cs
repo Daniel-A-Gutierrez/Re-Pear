@@ -8,18 +8,19 @@ using UnityEngine;
 public class PlayerBullet : Bullet
 {   
     Animator animator;
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     private bool terminating = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = direction * speed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = direction * speed;
     }
 
     void Update()
     {
+        //rb.velocity = direction * speed;
         if(Time.time-birthTime > lifetime)
             Terminate();
     }
@@ -27,8 +28,8 @@ public class PlayerBullet : Bullet
     void OnEnable()
     {
         animator = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = direction*speed;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = direction*speed;
         animator.SetTrigger("OnAwake");
     }
 
@@ -37,7 +38,7 @@ public class PlayerBullet : Bullet
         if (terminating == false){
             terminating = true;
             animator.SetTrigger("OnImpact");
-            rigidbody.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero;
             StartCoroutine(TerminateAfterSeconds());
         }
     }

@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyBullet : Bullet
 {   
     Animator animator;
-    Rigidbody2D rigidbody;
+    new Rigidbody2D rigidbody;
     private bool terminating = false;
 
     void Start()
