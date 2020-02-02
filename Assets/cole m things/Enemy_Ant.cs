@@ -8,10 +8,13 @@ public class Enemy_Ant : MonoBehaviour
     public float damage;
     public GameObject ant;
 
+    public float hp;
+
     public Transform stationCore;
     private Rigidbody2D antBody;
     private Transform antTransform;
 
+    public AudioClip deathSound;
 
     // Start is called before the first frame update
     void Start()
@@ -50,5 +53,18 @@ public class Enemy_Ant : MonoBehaviour
     public void setStationCore(Transform core)
     {
         stationCore = core;
+    }
+
+    public void takeDamage(float amount)
+    {
+        
+
+        hp -= amount;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+            AudioSource enemySource = new AudioSource();
+            enemySource.PlayOneShot(deathSound);
+        }
     }
 }
