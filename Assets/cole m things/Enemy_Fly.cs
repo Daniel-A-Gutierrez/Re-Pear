@@ -38,8 +38,8 @@ public class Enemy_Fly : MonoBehaviour
         flyTransform = fly.GetComponent<Transform>();
 
         rotating = false;
-        rotationRadius = 3;
-
+        //this is bad bad bad practice, IM making a huge assumption. don't be like me.
+        rotationRadius = stationCore.gameObject.GetComponent<Station>().RotationRadius();
     }
 
     ///<summary>Update is called once per frame</summary> 
