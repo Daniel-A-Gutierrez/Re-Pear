@@ -3,6 +3,7 @@
 public class SpawnManager : MonoBehaviour
 {
     public GameObject core;
+    public GameObject player;
 
     public GameObject antPrefab;
     public GameObject flyPrefab;
@@ -21,7 +22,7 @@ public class SpawnManager : MonoBehaviour
     //the number in the second column represents number OF them
     private int[][] encounters = new int[][]
     {
-        new int[2]{2,1},
+        new int[2]{0,1},
         new int[2]{1,1},
         new int[2]{0,2},
         new int[2]{1,2},
@@ -159,12 +160,28 @@ public class SpawnManager : MonoBehaviour
         //ant spawn
         if (encounters[encounterCode][0] == 0)
         {
-            print("Spawning: " + numToSpawn + "ants");
-            for (int i = 0; i < numToSpawn; i++)
+            //roll to see if ants attack player (currently a 1/4 chance to attack player)
+            int antPlayerRoll = Random.Range(0, 3);
+            //if not player:
+            if (antPlayerRoll != 0)
             {
-                GameObject newAnt = Instantiate(antPrefab, usingSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
-                newAnt.GetComponent<Enemy_Ant>().setStationCore(core.GetComponent<Transform>());
-                //WaitForSeconds(1);
+                print("Spawning: " + numToSpawn + "ants");
+                for (int i = 0; i < numToSpawn; i++)
+                {
+                    GameObject newAnt = Instantiate(antPrefab, usingSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
+                    newAnt.GetComponent<Enemy_Ant>().setStationCore(core.GetComponent<Transform>());
+                }
+            }
+
+            //if player
+            else
+            {
+                print("Spawning: " + numToSpawn + "ants at player!");
+                for (int i = 0; i < numToSpawn; i++)
+                {
+                    GameObject newAnt = Instantiate(antPrefab, usingSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
+                    newAnt.GetComponent<Enemy_Ant>().setStationCore(player.GetComponent<Transform>());
+                }
             }
         }
 
@@ -176,11 +193,10 @@ public class SpawnManager : MonoBehaviour
             {
                 GameObject newFly = Instantiate(flyPrefab, usingSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
                 newFly.GetComponent<Enemy_Ant>().setStationCore(core.GetComponent<Transform>());
-                //WaitForSeconds(1);
             }
         }
 
-        //ant spawn
+        //wasp spawn
         else if (encounters[encounterCode][0] == 2)
         {
             print("Spawning: " + numToSpawn + "wasps");
@@ -188,7 +204,6 @@ public class SpawnManager : MonoBehaviour
             {
                 GameObject newWasp = Instantiate(waspPrefab, usingSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
                 newWasp.GetComponent<Enemy_Wasp>().setStationCore(core.GetComponent<Transform>());
-                //WaitForSeconds(1);
             }
         }
 
