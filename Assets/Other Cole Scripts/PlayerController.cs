@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     float lastShotTime = 0;
     float bulletLife = 2;
 
+    public float hp;
+
     GameObject inventory;
 
     Use use ;
@@ -180,6 +182,24 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject bullet = collision.gameObject;
+        if (bullet.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet"))
+        {
+            takeDamage(1);
+        }
+
+    }
+
+    public void takeDamage(float amount)
+    {
+        hp -= amount;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
 }

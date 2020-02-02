@@ -47,7 +47,6 @@ public class Enemy_Ant : MonoBehaviour
         {
             takeDamage(1);
         } 
-
     }
 
     public void setStationCore(Transform core)
