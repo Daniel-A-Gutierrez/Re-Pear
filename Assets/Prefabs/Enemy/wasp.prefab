@@ -70,13 +70,13 @@ MonoBehaviour:
   sounds:
   - name: fire
     clip: {fileID: 8300000, guid: 8751c96d76d2bd44a9ec17e7c89ba902, type: 3}
-    volume: 0.55
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: die
     clip: {fileID: 8300000, guid: f0b6c5427fc31364da9690807411c77e, type: 3}
-    volume: 0.567
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
