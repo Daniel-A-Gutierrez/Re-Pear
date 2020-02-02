@@ -118,8 +118,8 @@ public class PlayerController : MonoBehaviour
                 if(inventory!=null)
                 {
                     AttachSound.Play();
-                    use.selecting.GetComponent<Interactable>().Use(this); //FIXME: tile might not show due to destruction
-                    
+                    use.selecting.GetComponent<Interactable>().Use(this); //FIXME, sometimes tile doesn't show
+                    DropAndDestroy();
                 }
             }
             //do a thing

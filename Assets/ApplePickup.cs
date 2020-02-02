@@ -14,9 +14,8 @@ public class ApplePickup : Interactable
         GetComponent<SpriteRenderer>().sprite = defaultSprite;
     }
 
-    public override bool Use(PlayerController player)
+    public override void Use(PlayerController player)
     {
         player.Pickup(gameObject);
-        return true;
     }
 }

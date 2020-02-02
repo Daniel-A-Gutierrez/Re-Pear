@@ -39,18 +39,15 @@ public class TileSelector : Interactable
         GetComponent<LineRenderer>().enabled = false;
     }
 
-    public override bool Use(PlayerController player)
+    public override void Use(PlayerController player)
     {
         if(station.PlacementAllowed(tilemapPosition.x,tilemapPosition.y) && player.HasTileInInventory())
         {
             //get tile from player to spawn. 
             station.AddTile(tilemapPosition.x,tilemapPosition.y,player.GetTile());
-            player.DropAndDestroy();
-            return true;
             //i should get a corresponding tile
             //
             //GetComponent<LineRenderer>().enabled = true;
         }
-        return false;
     }
 }
