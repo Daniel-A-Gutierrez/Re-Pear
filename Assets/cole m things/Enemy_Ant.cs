@@ -23,13 +23,13 @@ public class Enemy_Ant : MonoBehaviour
 
         //set the ray on the ant to point to the center of the map (ie, the station core)
         antTransform = ant.GetComponent<Transform>();
-        antTransform.up = (antTransform.position - stationCore.position);
+        antTransform.up = (antTransform.position - stationCore.position) * -1;
 
         //get the ant rigidbody
         antBody = ant.GetComponent<Rigidbody2D>();
 
         //these are extremely static enemies so the velocity is just gonna be instanced here
-        Vector2 vel = new Vector2(antTransform.up.x * -1, antTransform.up.y * -1);
+        Vector2 vel = new Vector2(antTransform.up.x, antTransform.up.y);
 
         //vel.Normalize();
         antBody.velocity = vel * speedMod;

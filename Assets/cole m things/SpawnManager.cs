@@ -6,20 +6,22 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject antPrefab;
     public GameObject flyPrefab;
-    public GameObject beePrefab;
+    public GameObject waspPrefab;
 
     private GameObject[] spawnPoints;
     private GameObject usingSpawnPoint;
     private int[] possibleEncounters = new int[7];
 
-    //could load this in from a file and make the game moddable :0
+    //these codes refer to the rows to pull from in the encounter double array
     private int[] encounterTable = new int[] 
     {0,0,0,1,1,2,2,2,3,3,4,5,5,5,6,6,7,8,8,8,9,9,10,10,11,
     12,12,12,13,13,14,15,15,15,16,16,17,18,18,18,19,19,20};
 
+    //0-2 in the first column represents the prefabs ant thru wasp
+    //the number in the second column represents number OF them
     private int[][] encounters = new int[][]
     {
-        new int[2]{0,1},
+        new int[2]{2,1},
         new int[2]{1,1},
         new int[2]{0,2},
         new int[2]{1,2},
@@ -93,16 +95,17 @@ public class SpawnManager : MonoBehaviour
             possibleEncounters[6] = encounterTable[6 + level];
         }
         
+        /*
         for(int i = 0; i < possibleEncounters.Length; i++)
         {
             print(possibleEncounters[i] + " ");
         }
-
+        */
       
 
         //roll a d100 
         int spawnRoll = Random.Range(0, 99);
-        print("rolled: " + spawnRoll);
+        //print("rolled: " + spawnRoll);
 
         //spawn odds: 25, 20, 20, 10, 10, 10, 5
         if (spawnRoll <= 24)
@@ -150,7 +153,7 @@ public class SpawnManager : MonoBehaviour
     private void spawn(int possibleEncounterNum)
     {
         int encounterCode = possibleEncounters[possibleEncounterNum];
-        print("Encounter rolled: " + encounterCode);
+        //print("Encounter rolled: " + encounterCode);
         int numToSpawn = encounters[encounterCode][1];     
 
         //ant spawn
@@ -165,7 +168,7 @@ public class SpawnManager : MonoBehaviour
             }
         }
 
-        //fly spawn
+        //make sure to add fly enemy script over enemy_ant
         else if (encounters[encounterCode][0] == 1)
         {
             print("Spawning: " + numToSpawn + "flies");
@@ -180,11 +183,11 @@ public class SpawnManager : MonoBehaviour
         //ant spawn
         else if (encounters[encounterCode][0] == 2)
         {
-            print("Spawning: " + numToSpawn + "bees");
+            print("Spawning: " + numToSpawn + "wasps");
             for (int i = 0; i < numToSpawn; i++)
             {
-                GameObject newBee = Instantiate(beePrefab, usingSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
-                newBee.GetComponent<Enemy_Ant>().setStationCore(core.GetComponent<Transform>());
+                GameObject newWasp = Instantiate(waspPrefab, usingSpawnPoint.GetComponent<Transform>().position, Quaternion.identity);
+                newWasp.GetComponent<Enemy_Wasp>().setStationCore(core.GetComponent<Transform>());
                 //WaitForSeconds(1);
             }
         }
