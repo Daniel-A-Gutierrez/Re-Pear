@@ -7,10 +7,10 @@ public class ApplePickup : Interactable
     public Sprite defaultSprite;
     public Sprite hilightSprite;
     
-    public virtual void Highlight(PlayerController player){
+    public override void Highlight(PlayerController player){
         GetComponent<SpriteRenderer>().sprite = hilightSprite;
     }
-    public virtual void UnHighlight(PlayerController player){
+    public override void UnHighlight(PlayerController player){
         GetComponent<SpriteRenderer>().sprite = defaultSprite;
     }
 
