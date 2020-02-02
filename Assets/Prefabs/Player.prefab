@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 2117016215}
   - component: {fileID: 2117016216}
   - component: {fileID: 2117016218}
+  - component: {fileID: 9205028479340286445}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -341,6 +342,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97c7f4b0aa774c77914bd8f3032f7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &9205028479340286445
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3605516872807873147}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &3605516873556804998
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +430,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 383f9203284db44afa59e999d0266dfd, type: 3}
+  m_Sprite: {fileID: 7788542115909898873, guid: d0469992d86a54e29824412fcbec0c93,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
