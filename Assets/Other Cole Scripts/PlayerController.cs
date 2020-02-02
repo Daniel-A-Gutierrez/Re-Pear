@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float hp;
 
     GameObject inventory;
+    Vector3 direction;
 
     Use use ;
 
@@ -53,9 +54,21 @@ public class PlayerController : MonoBehaviour
         // // Apply the rotation over time
         // angle *= Time.fixedDeltaTime / speed * sign;
         // transform.Rotate(0.0f, 0.0f, angle);
+        // if (inputDirection.magnitude > 0.0) {
+        //     transform.up = inputDirection;
+        // }
+
+
         if (inputDirection.magnitude > 0.0) {
-            transform.up = inputDirection;
+            // transform.up = Vector3.RotateTowards(transform.up, inputDirection, Time.fixedDeltaTime / 0.1f, 0.0f);
+            direction = inputDirection;
         }
+        float angle = Vector3.Angle(transform.up, inputDirection) * Mathf.Rad2Deg;
+        float sign = Mathf.Sign(Vector3.Cross(inputDirection, transform.up).z);
+        angle = Mathf.Min(angle * Time.fixedDeltaTime / 0.5f, angle);
+        angle *= sign;
+        Quaternion rotateVector = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.up = rotateVector * direction;
 
         // If buttons are pressed, accelerate
         if (inputDirection.magnitude > 0.0) {
