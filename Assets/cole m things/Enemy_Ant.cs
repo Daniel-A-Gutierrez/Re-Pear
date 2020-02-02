@@ -43,7 +43,9 @@ public class Enemy_Ant : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if( collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
+        if( collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet") || 
+            collision.gameObject.layer == LayerMask.NameToLayer("Station")       ||
+            collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             takeDamage(1);
         } 

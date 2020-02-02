@@ -188,9 +188,9 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject bullet = collision.gameObject;
-        if (bullet.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet"))
+        if (bullet.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet") || bullet.gameObject.layer == LayerMask.NameToLayer("Ant"))
         {
-            takeDamage(1);
+            //takeDamage(1);
         }
 
     }

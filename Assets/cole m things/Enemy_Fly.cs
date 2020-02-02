@@ -8,7 +8,7 @@ public class Enemy_Fly : MonoBehaviour
     public float damage;
     public GameObject fly;
     public float minNextDive;
-    public float rotationRadius;
+    
     public float hp;
 
     public Transform stationCore;
@@ -22,6 +22,9 @@ public class Enemy_Fly : MonoBehaviour
     private float lastDive;
 
     public AudioClip deathSound;
+
+    public float rotationOffset;
+    public float rotationRadius;
 
 
 
@@ -38,13 +41,15 @@ public class Enemy_Fly : MonoBehaviour
         flyTransform = fly.GetComponent<Transform>();
 
         rotating = false;
-        //this is bad bad bad practice, IM making a huge assumption. don't be like me.
-        rotationRadius = stationCore.gameObject.GetComponent<Station>().RotationRadius();
+        
     }
 
     ///<summary>Update is called once per frame</summary> 
     void FixedUpdate()
     {
+        //this is bad bad bad practice, IM making a huge assumption. don't be like me.
+        rotationRadius = stationCore.gameObject.GetComponent<Station>().RotationRadius() + rotationOffset;
+
         //this is the default movement inwards
         //yes I know I could've done this in an if-else statement
         //yes I know my parents don't love me and I'm bitter
@@ -86,15 +91,16 @@ public class Enemy_Fly : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject toDestroy = collision.gameObject;
-        if (toDestroy.tag == "StationArmor")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Station"))
         {
+            print("bonk");
             //tell the fly to retreat out to the rotation circle
             retreating = true;
             lastDive = Time.time;
             flyTransform.up *= -1;
         }
 
-        if (toDestroy.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
         {
             takeDamage(1);
         }
