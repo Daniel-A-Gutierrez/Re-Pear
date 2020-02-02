@@ -190,7 +190,11 @@ public class PlayerController : MonoBehaviour
         GameObject bullet = collision.gameObject;
         if (bullet.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet") || bullet.gameObject.layer == LayerMask.NameToLayer("Ant"))
         {
-            //takeDamage(1);
+            //keDamage(1);
+            if (c2d.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet"))
+            {
+                c2d.gameObject.GetComponent<EnemyBullet>().Terminate();
+            }
         }
 
     }

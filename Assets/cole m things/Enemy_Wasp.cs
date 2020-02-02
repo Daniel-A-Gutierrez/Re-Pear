@@ -9,7 +9,7 @@ public class Enemy_Wasp : MonoBehaviour
     public GameObject stinger;
     public GameObject waspGun;
 
-    public float rotationRadius;
+    private float rotationRadius;
     public float fireDelay;
     public float stingerSpeed;
     public float stingerLife;
@@ -26,6 +26,8 @@ public class Enemy_Wasp : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip fireSound;
     AudioSource enemySource;
+
+    public float rotationOffset;
 
 
     // Start is called before the first frame update
@@ -50,7 +52,7 @@ public class Enemy_Wasp : MonoBehaviour
         waspBody.velocity = vel * speedMod;
 
         rotating = false;
-        rotationRadius = 3;
+        rotationRadius = stationCore.gameObject.GetComponent<Station>().RotationRadius() + rotationOffset;
         nextFire = 0;
 
         AudioSource enemySource = new AudioSource();
@@ -59,6 +61,8 @@ public class Enemy_Wasp : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        rotationRadius = stationCore.gameObject.GetComponent<Station>().RotationRadius() + rotationOffset;
+
         if (((Vector3.Distance(stationCore.position, wasp.GetComponent<Transform>().position)) <= rotationRadius) && !rotating)
         {
             waspBody.velocity = Vector2.zero;
@@ -79,7 +83,10 @@ public class Enemy_Wasp : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
+        {
+            takeDamage(1);
+        }
     }
 
     public void setStationCore(Transform core)
@@ -95,5 +102,6 @@ public class Enemy_Wasp : MonoBehaviour
             Destroy(gameObject);
             GetComponent<AudioManager>().Play("die");
         }
+
     }
 }

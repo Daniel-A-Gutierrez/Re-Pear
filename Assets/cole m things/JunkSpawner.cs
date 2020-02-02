@@ -10,7 +10,7 @@ public class JunkSpawner : MonoBehaviour
     public GameObject melonTile;
     public GameObject orangeTile;
     //turret prefab
-    public GameObject turretTile;
+    //public GameObject turretTile;
 
     //array and handlers
     private GameObject[] junkSpawns;
@@ -62,7 +62,7 @@ public class JunkSpawner : MonoBehaviour
     public void SpawnJunk(int spawner)
     {
         //1 in 5 chance to spawn a turret
-        int turretRoll = Random.Range(0, 4);
+      /*  int turretRoll = Random.Range(0, 4);
         if (turretRoll == 0)
         {
            //spawn a tile
@@ -76,10 +76,8 @@ public class JunkSpawner : MonoBehaviour
 
             //rotate that puppy on z axis            
             newTile.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        }
+        } */
 
-        else
-        {
             //spawn a tile
             int tileType = Random.Range(0, 4);
             GameObject newTile = new GameObject();
@@ -115,6 +113,6 @@ public class JunkSpawner : MonoBehaviour
 
             //rotate that puppy on z axis            
             newTile.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-        }
+        
     }
 }

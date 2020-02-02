@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     //the number in the second column represents number OF them
     private int[][] encounters = new int[][]
     {
-        new int[2]{1,1},
+        new int[2]{2,1},
         new int[2]{1,1},
         new int[2]{0,2},
         new int[2]{1,2},
