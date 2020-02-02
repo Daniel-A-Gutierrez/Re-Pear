@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8924350585869529013}
   - component: {fileID: 3404273462999412044}
   - component: {fileID: 8852985652311650351}
-  m_Layer: 17
+  m_Layer: 13
   m_Name: StationBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

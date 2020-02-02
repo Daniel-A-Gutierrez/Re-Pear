@@ -791,12 +791,7 @@ PrefabInstance:
     - target: {fileID: 717378462795459651, guid: 3c228701e87dae94aae7c4cc818a4fdf,
         type: 3}
       propertyPath: minNextSpawnTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 717378462795459651, guid: 3c228701e87dae94aae7c4cc818a4fdf,
-        type: 3}
-      propertyPath: randSpawnTimeRange
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 717378462795459652, guid: 3c228701e87dae94aae7c4cc818a4fdf,
         type: 3}
@@ -1299,12 +1294,12 @@ PrefabInstance:
     - target: {fileID: 1745347791352458448, guid: 10d0edaf8fc9fd146a0432bcf59db997,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1745347791352458448, guid: 10d0edaf8fc9fd146a0432bcf59db997,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1745347791352458451, guid: 10d0edaf8fc9fd146a0432bcf59db997,
         type: 3}

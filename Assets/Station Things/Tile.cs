@@ -70,10 +70,6 @@ public class Tile : MonoBehaviour
             ||c2d.gameObject.layer == LayerMask.NameToLayer("Fly")  )
         {
             Damage(1);
-            if(c2d.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet"))
-            {
-                c2d.gameObject.GetComponent<EnemyBullet>().Terminate();
-            }
         }
 
         if (c2d.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))

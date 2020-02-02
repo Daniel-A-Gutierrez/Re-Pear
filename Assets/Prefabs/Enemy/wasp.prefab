@@ -30,31 +30,6 @@ Transform:
   m_Father: {fileID: 6652181430624104170}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1330669260096906129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6652181430624104209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff0a0c3fe4184944b0046f2b55dad62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: fire
-    clip: {fileID: 8300000, guid: 8751c96d76d2bd44a9ec17e7c89ba902, type: 3}
-    volume: 0.669
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: die
-    clip: {fileID: 8300000, guid: f0b6c5427fc31364da9690807411c77e, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
 --- !u!114 &2807446726379125461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,15 +46,40 @@ MonoBehaviour:
   wasp: {fileID: 6652181430624104209}
   stinger: {fileID: 4538965938106426713, guid: 2dc3b991468d8fb4fa84da384a5e9252, type: 3}
   waspGun: {fileID: 2824869573352419427}
+  rotationRadius: 3
   fireDelay: 3
   stingerSpeed: 3
   stingerLife: 10
   damage: 0
-  hp: 1
+  hp: 0
   stationCore: {fileID: 0}
   deathSound: {fileID: 8300000, guid: f0b6c5427fc31364da9690807411c77e, type: 3}
   fireSound: {fileID: 8300000, guid: 8751c96d76d2bd44a9ec17e7c89ba902, type: 3}
-  rotationOffset: 2
+--- !u!114 &1330669260096906129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6652181430624104209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff0a0c3fe4184944b0046f2b55dad62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: fire
+    clip: {fileID: 8300000, guid: 8751c96d76d2bd44a9ec17e7c89ba902, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: die
+    clip: {fileID: 8300000, guid: f0b6c5427fc31364da9690807411c77e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1001 &4857052920959167812
 PrefabInstance:
   m_ObjectHideFlags: 0
