@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         stationBullets = new Queue<GameObject>();
+        playerBullets = new Queue<GameObject>();
+        enemyBullets = new Queue<GameObject>();
+
         transform.position = Vector3.zero;
     }
     // Start is called before the first frame update

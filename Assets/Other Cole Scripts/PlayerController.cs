@@ -13,13 +13,50 @@ public class PlayerController : MonoBehaviour
     public float stopTime = 1.0f; // Time in seconds to stop.
     private float timer;
 
+    public float fireRate = 4f;
+    float fireInterval;
+    float lastShotTime = 0;
+    float bulletLife = 2;
+
+    GameObject inventory;
+
+    Use use ;
+
     void Start() {
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        fireInterval = 1/fireRate;
+        use = transform.Find("probe").GetComponent<Use>();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate() 
+    {    
+
         
+
+        /* currently buggy , taking an impulse sends the player spinning forever
         // Convert input to a direction vector
+        
+
+        // Get the angle between the current direction and the velocity direction
+        float angle = Vector3.Angle(transform.up, rigidBody.velocity);
+
+        // We multiply by the sign of the cross product to use the closest direction
+        float sign = Mathf.Sign(Vector3.Cross(transform.up, rigidBody.velocity).z);
+
+        // Apply the rotation over time
+        angle *= Time.fixedDeltaTime / speed * sign;
+        transform.Rotate(0.0f, 0.0f, angle);
+        */
+       
+    }
+
+    void Update()
+    {
+         Vector3 campoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        campoint.z = 0;
+        transform.up = (campoint -transform.position).normalized;
+
+
         inputDirection = new Vector2(
             Input.GetAxis("Horizontal"),
             Input.GetAxis("Vertical")
@@ -36,17 +73,43 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, Vector2.zero, 1-timer);
         }
 
-        // Get the angle between the current direction and the velocity direction
-        float angle = Vector3.Angle(transform.up, rigidBody.velocity);
+        if(Time.time - lastShotTime> fireInterval && Input.GetKey(KeyCode.Space))
+        {
+            Shoot();
+        }
 
-        // We multiply by the sign of the cross product to use the closest direction
-        float sign = Mathf.Sign(Vector3.Cross(transform.up, rigidBody.velocity).z);
-
-        // Apply the rotation over time
-        angle *= Time.fixedDeltaTime / speed * sign;
-        transform.Rotate(0.0f, 0.0f, angle);
-
+        if(use.selecting != null && Input.GetKeyDown(KeyCode.E))
+        {
+            use.selecting.GetComponent<Interactable>().Use(this);
+        }
+        
     }
+
+    void Shoot()
+    {
+        //Vector3 target = transform.position + transform.up;
+        lastShotTime = Time.time;
+        GameManager.instance.PlayerShoot( (transform.position +
+             transform.up * 1f ),
+             transform.up,
+             bulletLife);
+    }
+
+    //these functions are called by the probe 
+    public void Pickup(GameObject g)
+    {
+        transform.Find("Tractor Beam").gameObject.SetActive(true);
+        inventory = g;
+        g.transform.parent = transform.Find("Attach Point");
+    }
+
+    public void Drop()
+    {
+        inventory.transform.parent = null;
+        inventory = null;
+        transform.Find("Tractor Beam").gameObject.SetActive(false);
+    }
+
 
 
 }

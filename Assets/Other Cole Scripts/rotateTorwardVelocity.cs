@@ -20,6 +20,7 @@ public class rotateTorwardVelocity : MonoBehaviour, IOrdered
 
     public void OrderedUpdate()
     {
+        return;//temp disable
         velocity = (transform.position - position);
         position = transform.position;
         
