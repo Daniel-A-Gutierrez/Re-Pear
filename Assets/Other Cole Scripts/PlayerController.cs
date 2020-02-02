@@ -73,13 +73,27 @@ public class PlayerController : MonoBehaviour
                          Vector2.left * (Input.GetKey(KeyCode.A) ? 1: 0) +
                          Vector2.up * (Input.GetKey(KeyCode.W) ? 1: 0) +
                          Vector2.down  * (Input.GetKey(KeyCode.S) ? 1: 0) ).normalized; 
-
+        
         rigidBody.MovePosition(rigidBody.position + inputDirection*speed*Time.fixedDeltaTime);
     }
     
 
     void Update()
     {
+
+
+        // inputDirection = (Vector2.right * (Input.GetKey(KeyCode.D) ? 1: 0) +
+        //                  Vector2.left * (Input.GetKey(KeyCode.A) ? 1: 0) +
+        //                  Vector2.up * (Input.GetKey(KeyCode.W) ? 1: 0) +
+        //                  Vector2.down  * (Input.GetKey(KeyCode.S) ? 1: 0) ).normalized; 
+
+        // Vector2 vel = inputDirection*speed*Time.deltaTime;
+        // transform.position = new Vector3 (
+        //     transform.position.x + vel.x,
+        //     transform.position.y + vel.y,
+        //     transform.position.z
+        // );
+
         Vector3 campoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         campoint.z = 0;
         transform.up = (campoint -transform.position).normalized;
