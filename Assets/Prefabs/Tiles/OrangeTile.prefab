@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3764650148301186047}
   - component: {fileID: 6859317982968725775}
   - component: {fileID: 443281479872958152}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OrangeTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

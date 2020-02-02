@@ -65,6 +65,11 @@ public class Tile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D c2d)
     {
-        
+        if(c2d.gameObject.layer == LayerMask.NameToLayer("Ant")
+            ||c2d.gameObject.layer == LayerMask.NameToLayer("Enemy Bullet")
+            ||c2d.gameObject.layer == LayerMask.NameToLayer("Fly")  )
+        {
+            Damage(1);
+        }
     }
 }
