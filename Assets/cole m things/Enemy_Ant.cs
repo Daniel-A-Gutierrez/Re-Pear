@@ -48,6 +48,11 @@ public class Enemy_Ant : MonoBehaviour
         {
            // Destroy(toDestroy);
         }
+
+        if (toDestroy.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
+        {
+            takeDamage(1);
+        }
     }
 
     public void setStationCore(Transform core)

@@ -88,13 +88,17 @@ public class Enemy_Fly : MonoBehaviour
         GameObject toDestroy = collision.gameObject;
         if (toDestroy.tag == "StationArmor")
         {
-           // Destroy(toDestroy);
+            //tell the fly to retreat out to the rotation circle
+            retreating = true;
+            lastDive = Time.time;
+            flyTransform.up *= -1;
         }
 
-        //tell the fly to retreat out to the rotation circle
-        retreating = true;
-        lastDive = Time.time;
-        flyTransform.up *= -1;
+        if (toDestroy.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
+        {
+            takeDamage(1);
+        }
+
     }
 
     public void setStationCore(Transform core)
