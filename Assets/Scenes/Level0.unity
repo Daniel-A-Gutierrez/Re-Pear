@@ -520,17 +520,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: station
       objectReference: {fileID: 0}
-    - target: {fileID: 4390773563574582462, guid: cfd5de7e75817be40a1abbd5634cc1e8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4390773563574582463, guid: cfd5de7e75817be40a1abbd5634cc1e8,
-        type: 3}
-      propertyPath: highlight
-      value: 
-      objectReference: {fileID: 3682178198426523132, guid: 646ff7808842b4c17b583646103727f8,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfd5de7e75817be40a1abbd5634cc1e8, type: 3}
 --- !u!1001 &6738931949820022314
