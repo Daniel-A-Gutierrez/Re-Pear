@@ -43,16 +43,11 @@ public class Enemy_Ant : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject toDestroy = collision.gameObject;
-        if (toDestroy.tag == "StationArmor")
-        {
-           // Destroy(toDestroy);
-        }
-
-        if (toDestroy.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
+        if( collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
         {
             takeDamage(1);
-        }
+        } 
+
     }
 
     public void setStationCore(Transform core)
@@ -62,8 +57,6 @@ public class Enemy_Ant : MonoBehaviour
 
     public void takeDamage(float amount)
     {
-        
-
         hp -= amount;
         if (hp <= 0)
         {
@@ -72,4 +65,5 @@ public class Enemy_Ant : MonoBehaviour
             enemySource.PlayOneShot(deathSound);
         }
     }
+
 }

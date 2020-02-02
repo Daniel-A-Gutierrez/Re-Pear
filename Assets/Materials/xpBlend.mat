@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CoreMaterial
-  m_Shader: {fileID: 4800000, guid: ac6776328b3744d909a594ca665a5a4b, type: 3}
+  m_Name: xpBlend
+  m_Shader: {fileID: 4800000, guid: 7a00ad6e632834ae4b7901bebe377860, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DeadTex:
-        m_Texture: {fileID: 2800000, guid: 3012fe8f8d4234ffa9623bc954a5b104, type: 3}
+        m_Texture: {fileID: 2800000, guid: fd194b74873664949ada222b601f8b96, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -44,11 +44,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8719b4b1ed2864e9880b6b9240d2d577, type: 3}
+        m_Texture: {fileID: 2800000, guid: b3ef6cb3de7994d8f8453d1414670474, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: fc6991b1dc216447a96fb3ca5ed82394, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6c8035080356542fa8dfc527e486b1dc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
