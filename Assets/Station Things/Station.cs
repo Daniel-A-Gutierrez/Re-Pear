@@ -41,19 +41,29 @@ public class Station : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0 ; i  <halfSideLength*2 ; i++)
-        {
-            for(int q = 0 ; q < halfSideLength*2; q++)
-            {
-                if(tiles[i,q] != null)
-                {
-                    tiles[i,q].transform.parent = transform;
-                    Vector2Int tilePos = ArrayPosToTilemapPos(i,q) ;
+        // for(int i = 0 ; i  <halfSideLength*2 ; i++)
+        // {
+        //     for(int q = 0 ; q < halfSideLength*2; q++)
+        //     {
+        //         if(tiles[i,q] != null)
+        //         {
+        //             tiles[i,q].transform.parent = transform;
+        //             Vector2Int tilePos = ArrayPosToTilemapPos(i,q) ;
                 
-                    tiles[i,q].transform.localPosition = TilemapPosToLocalPos(tilePos.x,tilePos.y);
-                } 
-            }
-        }
+        //             tiles[i,q].transform.localPosition = TilemapPosToLocalPos(tilePos.x,tilePos.y);
+        //         } 
+        //     }
+        // }
+
+        
+        AddTile(0,1,startingTiles[0]);
+        AddTile(1,0,startingTiles[1]);
+        AddTile(1,-1,startingTiles[2]);
+        AddTile(0,-2,startingTiles[3]);
+        AddTile(-1,-2,startingTiles[4]);
+        AddTile(-2,-1,startingTiles[5]);
+        AddTile(-2,0,startingTiles[6]);
+        AddTile(-1,1,startingTiles[7]);
     }
 
     // Update is called once per frame
@@ -68,7 +78,8 @@ public class Station : MonoBehaviour
     {
         if(PlacementAllowed(x,y))
         {
-            // tiles[x,y] = GameObject.Instantiate(tile,TilemapPosToLocalPos(x,y),Quaternion.identity,transform);
+            Vector2Int arrayPos = TilemapPosToArrayPos(x,y);
+            tiles[arrayPos.x,arrayPos.y] = GameObject.Instantiate(tile,TilemapPosToLocalPos(x,y),Quaternion.identity,transform);
         }
     }
     ///<summary> Use tilemap Position x and y</summary>

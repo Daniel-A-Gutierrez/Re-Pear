@@ -36,6 +36,16 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = Vector2.Lerp(rigidBody.velocity, Vector2.zero, 1-timer);
         }
 
+        // Get the angle between the current direction and the velocity direction
+        float angle = Vector3.Angle(transform.up, rigidBody.velocity);
+
+        // We multiply by the sign of the cross product to use the closest direction
+        float sign = Mathf.Sign(Vector3.Cross(transform.up, rigidBody.velocity).z);
+
+        // Apply the rotation over time
+        angle *= Time.fixedDeltaTime / speed * sign;
+        transform.Rotate(0.0f, 0.0f, angle);
+
     }
 
 
