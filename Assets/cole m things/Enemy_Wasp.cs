@@ -65,9 +65,7 @@ public class Enemy_Wasp : MonoBehaviour
                 GameObject newStinger = Instantiate(stinger, waspGun.transform.position, waspGun.transform.rotation);
                 Vector2 vel = new Vector2(waspGun.transform.up.x, waspGun.transform.up.y);
                 newStinger.GetComponent<Rigidbody2D>().velocity = vel * stingerSpeed;
-            }
-
-               
+            }               
         }
     }
 

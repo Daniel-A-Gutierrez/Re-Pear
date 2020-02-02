@@ -21,7 +21,9 @@ public class Enemy_Ant : MonoBehaviour
             print("No ant object set to ant script in prefab");
         }
 
-       
+        //getting the ant rigid body
+        antBody = ant.GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -30,13 +32,9 @@ public class Enemy_Ant : MonoBehaviour
         //set the ray on the ant to point to the center of the map (ie, the station core)
         antTransform = ant.GetComponent<Transform>();
         antTransform.up = (antTransform.position - stationCore.position) * -1;
-
-        //get the ant rigidbody
-        antBody = ant.GetComponent<Rigidbody2D>();
-
+        
         //these are extremely static enemies so the velocity is just gonna be instanced here
         Vector2 vel = new Vector2(antTransform.up.x, antTransform.up.y);
-
         antBody.velocity = vel * speedMod;
     }
 
