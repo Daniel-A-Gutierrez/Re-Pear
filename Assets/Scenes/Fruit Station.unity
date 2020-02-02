@@ -287,7 +287,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1792
   scanInterval: 2
-  range: 5
+  bulletLife: 3
   fireRate: 1
 --- !u!4 &1129100169
 Transform:
@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 1547391009}
   - component: {fileID: 1547391008}
   - component: {fileID: 1547391007}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
