@@ -16,7 +16,7 @@ public class JunkSpawner : MonoBehaviour
     private GameObject[] junkSpawns;
     public int tileTypes;
     public int spawnsPerWave;
-    public int tileSpawnOffseRadiusMax;
+    public float tileSpawnOffseRadiusMax;
 
     //intial spawns, have to set manually to the ones you want, sorru uwu
     public int initialSpawn0;
@@ -40,6 +40,7 @@ public class JunkSpawner : MonoBehaviour
         SpawnJunk(initialSpawn3);
 
         nextSpawnTime = Time.time + minNextSpawnTime + Random.Range(0, randSpawnTimeRange);
+        print(Time.time + " :: " + nextSpawnTime);
     }
 
     // Update is called once per frame
@@ -54,6 +55,7 @@ public class JunkSpawner : MonoBehaviour
             }
 
             nextSpawnTime = Time.time + minNextSpawnTime + Random.Range(0, randSpawnTimeRange);
+            print(Time.time + " :: " + nextSpawnTime);
         }
     }
 
@@ -68,18 +70,18 @@ public class JunkSpawner : MonoBehaviour
 
           //scootch it around in a semi-random raius
            Vector2 tilePos = newTile.GetComponent<Transform>().position;
-           tilePos.x += Random.Range(0, tileSpawnOffseRadiusMax);
-           tilePos.y += Random.Range(0, tileSpawnOffseRadiusMax);
+           tilePos.x += Random.Range(tileSpawnOffseRadiusMax * -1, tileSpawnOffseRadiusMax);
+           tilePos.y += Random.Range(tileSpawnOffseRadiusMax * -1, tileSpawnOffseRadiusMax);
            newTile.GetComponent<Transform>().position = tilePos;
 
             //rotate that puppy on z axis            
-            newTile.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
+            newTile.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         }
 
         else
         {
             //spawn a tile
-            int tileType = Random.Range(0, 3);
+            int tileType = Random.Range(0, 4);
             GameObject newTile = new GameObject();
             switch (tileType)
             {
@@ -107,12 +109,12 @@ public class JunkSpawner : MonoBehaviour
 
             //scootch it around in a semi-random raius
             Vector2 tilePos = newTile.GetComponent<Transform>().position;
-            tilePos.x += Random.Range(0, tileSpawnOffseRadiusMax);
-            tilePos.y += Random.Range(0, tileSpawnOffseRadiusMax);
+            tilePos.x += Random.Range(tileSpawnOffseRadiusMax * -1, tileSpawnOffseRadiusMax);
+            tilePos.y += Random.Range(tileSpawnOffseRadiusMax * -1, tileSpawnOffseRadiusMax);
             newTile.GetComponent<Transform>().position = tilePos;
 
             //rotate that puppy on z axis            
-            newTile.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, Random.Range(0, 180));
+            newTile.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
         }
     }
 }
