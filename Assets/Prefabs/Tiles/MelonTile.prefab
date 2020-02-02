@@ -73,6 +73,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MelonTile
       objectReference: {fileID: 0}
+    - target: {fileID: 4791620608707857203, guid: bd8b5dfcf18475d478a18e23a6bfcc52,
+        type: 3}
+      propertyPath: m_TagString
+      value: StationArmor
+      objectReference: {fileID: 0}
     - target: {fileID: 4929345464060530508, guid: bd8b5dfcf18475d478a18e23a6bfcc52,
         type: 3}
       propertyPath: m_IsActive
