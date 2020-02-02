@@ -347,6 +347,7 @@ MonoBehaviour:
   startTime: 0.3
   stopTime: 0.3
   fireRate: 4
+  hp: 3
 --- !u!50 &3605516872807873146
 Rigidbody2D:
   serializedVersion: 4
