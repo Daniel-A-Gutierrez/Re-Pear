@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy_Wasp : MonoBehaviour
 {
     public float speedMod;
-    public float damage;
     public GameObject wasp;
     public GameObject stinger;
     public GameObject waspGun;
@@ -15,11 +14,18 @@ public class Enemy_Wasp : MonoBehaviour
     public float stingerSpeed;
     public float stingerLife;
 
+    public float damage;
+    public float hp;
+
     public Transform stationCore;
     private Rigidbody2D waspBody;
     private Transform waspTransform;
     private bool rotating;
     private float nextFire;
+
+    public AudioClip deathSound;
+    public AudioClip fireSound;
+    AudioSource enemySource;
 
 
     // Start is called before the first frame update
@@ -46,6 +52,8 @@ public class Enemy_Wasp : MonoBehaviour
         rotating = false;
         rotationRadius = 3;
         nextFire = 0;
+
+        AudioSource enemySource = new AudioSource();
     }
 
     // Update is called once per frame
@@ -64,6 +72,7 @@ public class Enemy_Wasp : MonoBehaviour
             {
                 nextFire = Time.time + fireDelay;
                 GameManager.instance.EnemyShoot(waspGun.transform.position, waspGun.transform.up, stingerLife);
+                GetComponent<AudioManager>().Play("fire");
             }               
         }
     }
@@ -76,5 +85,15 @@ public class Enemy_Wasp : MonoBehaviour
     public void setStationCore(Transform core)
     {
         stationCore = core;
+    }
+
+    public void takeDamage(float amount)
+    {
+        hp -= amount;
+        if(hp <= 0)
+        {
+            Destroy(gameObject);
+            GetComponent<AudioManager>().Play("die");
+        }
     }
 }
