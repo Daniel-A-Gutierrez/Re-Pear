@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using UnityEngine.SceneManagement;
 
 public class Station : MonoBehaviour
 {
@@ -87,6 +88,8 @@ public class Station : MonoBehaviour
         {
             Vector2Int arrayPos = TilemapPosToArrayPos(x,y);
             tiles[arrayPos.x,arrayPos.y] = GameObject.Instantiate(tile,TilemapPosToLocalPos(x,y),Quaternion.identity,transform);
+
+            GameManager.instance.managers.GetComponent<LevelManager>().addPart("armor");
         }
     }
     ///<summary> Use tilemap Position x and y</summary>
@@ -266,6 +269,7 @@ public class Station : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
         }
     }
 

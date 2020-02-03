@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -213,6 +214,7 @@ public class PlayerController : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
         }
     }
 

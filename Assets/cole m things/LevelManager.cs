@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
     }
 
     //===used when a part is added to the station, which is the only reason to increment exp
-    void addPart(string partName)
+    public void addPart(string partName)
     {
         switch (partName)
         {
