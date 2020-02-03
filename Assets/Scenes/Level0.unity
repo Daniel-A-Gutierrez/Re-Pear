@@ -1398,12 +1398,12 @@ PrefabInstance:
     - target: {fileID: 3497606532534878285, guid: 109509438e6ff264b90b249f4525821d,
         type: 3}
       propertyPath: minNextSpawnTime
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3497606532534878285, guid: 109509438e6ff264b90b249f4525821d,
         type: 3}
       propertyPath: randSpawnTimeRange
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3497606532534878286, guid: 109509438e6ff264b90b249f4525821d,
         type: 3}
