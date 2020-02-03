@@ -95,7 +95,6 @@ public class Enemy_Fly : MonoBehaviour
         GameObject toDestroy = collision.gameObject;
         if (collision.gameObject.layer == LayerMask.NameToLayer("Station") && Time.time >= nextCollision)
         {
-            print("bonk");
             //tell the fly to retreat out to the rotation circle
             retreating = true;
             lastDive = Time.time;
@@ -105,7 +104,7 @@ public class Enemy_Fly : MonoBehaviour
             nextCollision = lastCollision + collisionDelay;
         }
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet") || collision.gameObject.layer == LayerMask.NameToLayer("Station Bullet"))
         {
             takeDamage(1);
         }

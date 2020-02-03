@@ -45,7 +45,8 @@ public class Enemy_Ant : MonoBehaviour
     {
         if( collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet") || 
             collision.gameObject.layer == LayerMask.NameToLayer("Station")       ||
-            collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            collision.gameObject.layer == LayerMask.NameToLayer("Player")       ||
+            collision.gameObject.layer == LayerMask.NameToLayer("Station Bullet"))
         {
             takeDamage(1);
         } 

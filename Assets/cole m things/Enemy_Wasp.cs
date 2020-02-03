@@ -79,7 +79,11 @@ public class Enemy_Wasp : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       
+        if( collision.gameObject.layer == LayerMask.NameToLayer("Player Bullet") || 
+            collision.gameObject.layer == LayerMask.NameToLayer("Station Bullet"))
+        {
+            takeDamage(1);
+        } 
     }
 
     public void setStationCore(Transform core)
