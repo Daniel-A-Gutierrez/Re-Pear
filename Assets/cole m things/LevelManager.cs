@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        exp = -8;
+        exp = 0;
         currentLevel = 0;
     }
 
@@ -52,11 +52,11 @@ public class LevelManager : MonoBehaviour
         switch (partName)
         {
             case "armor":
-                exp -= 1;
+                //exp -= 1;
                 break;
 
             case "turret":
-                exp -= 4;
+                //exp -= 4;
                 break;
 
             default:
