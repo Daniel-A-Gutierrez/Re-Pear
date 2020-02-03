@@ -45,4 +45,9 @@ public class EnemyBullet : Bullet
         terminating = false;
         GameManager.instance.TerminateEnemyBullet(gameObject);
     }
+
+    void OnCollisionEnter2D(Collision2D c)
+    {
+        Terminate();
+    }
 }
