@@ -46,7 +46,7 @@ public class StationBullet : Bullet
         GameManager.instance.TerminateStationBullet(gameObject);
     }
 
-    void OnCollisionEnter2D(Collision c)
+    void OnCollisionEnter2D(Collision2D c)
     {
         Terminate();
     }
