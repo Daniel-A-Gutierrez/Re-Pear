@@ -27,10 +27,12 @@ public class LevelManager : MonoBehaviour
     //===used when a part is added to the station, which is the only reason to increment exp
     public void addPart(string partName)
     {
+        print("added exp");
         switch (partName)
         {
             case "armor":
                 exp += 1;
+                print("it's armor" + exp);
                 break;
 
             case "turret":
