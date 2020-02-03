@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
 {
     private int exp;
     private int currentLevel;
-
+    public int difficultyPerMinute = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +18,16 @@ public class LevelManager : MonoBehaviour
         currentLevel = 0;
     }
 
+    float lastIncreaseTime;
     // Update is called once per frame
     void Update()
     {
-        
+        if(Time.time>lastIncreaseTime)
+        {
+            lastIncreaseTime=Time.time;
+            lastIncreaseTime += 60/difficultyPerMinute;
+            addPart("armor");
+        }
     }
 
     //===used when a part is added to the station, which is the only reason to increment exp
