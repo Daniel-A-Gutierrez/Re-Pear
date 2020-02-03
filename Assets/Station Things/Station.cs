@@ -88,6 +88,8 @@ public class Station : MonoBehaviour
         {
             Vector2Int arrayPos = TilemapPosToArrayPos(x,y);
             tiles[arrayPos.x,arrayPos.y] = GameObject.Instantiate(tile,TilemapPosToLocalPos(x,y),Quaternion.identity,transform);
+
+            GameManager.instance.managers.GetComponent<LevelManager>().addPart("armor");
         }
     }
     ///<summary> Use tilemap Position x and y</summary>
