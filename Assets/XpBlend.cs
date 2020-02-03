@@ -15,6 +15,6 @@ public class XpBlend : MonoBehaviour
 
     void Update()
     {
-        spriteRenderer.material.SetFloat("_Blend", 1 - ((float)levelManager.getExp() / 4.0f));   
+        spriteRenderer.material.SetFloat("_Blend", 1.0f - ((float)levelManager.getExp() / 4.0f));   
     }
 }

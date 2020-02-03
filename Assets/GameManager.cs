@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         //why? I don't know, not the cleanest way to do it but it's 12pm and I need to hurry
         //spawning loop
         //won't spanw enemies at level 0
-        if (managers.GetComponent<LevelManager>().getLevel() == 0 && Time.time >= nextSpawnTime)
+        if (managers.GetComponent<LevelManager>().getLevel() != 0 && Time.time >= nextSpawnTime)
         {
             managers.GetComponent<SpawnManager>().spawnAt(managers.GetComponent<LevelManager>().getLevel());
             nextSpawnTime = Time.time + minNextSpawnTime + Random.Range(0, randSpawnTimeRange);          

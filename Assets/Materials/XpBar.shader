@@ -7,7 +7,7 @@ Shader "Sprites/XP"
 		_MainTex ("Sprite Texture", 2D) = "white" {}
 		_DeadTex ("Dead Texture", 2D) = "white" {}
 		_MaskTex ("Mask Texture", 2D) = "black" {}
-		_Blend ("Blend", Range(0.0, 1.0)) = 0.0
+		_Blend ("Blend", Float) = 0.0
 		_Color ("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
 	}
