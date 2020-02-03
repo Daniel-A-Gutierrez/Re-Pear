@@ -74,8 +74,8 @@ public class Tile : MonoBehaviour
 
         if (c2d.gameObject.layer == LayerMask.NameToLayer("Player Bullet"))
         {
-            print("player bullet collision");
-            c2d.gameObject.GetComponent<PlayerBullet>().Terminate();
+            //print("player bullet collision");
+            //c2d.gameObject.GetComponent<PlayerBullet>().Terminate();
         }
     }
 }
