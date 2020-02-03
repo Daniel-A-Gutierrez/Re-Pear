@@ -132,7 +132,6 @@ public class PlayerController : MonoBehaviour
                 {
                     AttachSound.Play();
                     use.selecting.GetComponent<Interactable>().Use(this); //FIXME, sometimes tile doesn't show
-                    DropAndDestroy();
                 }
             }
             //do a thing
