@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using UnityEngine.SceneManagement;
 
 public class Station : MonoBehaviour
 {
@@ -266,6 +267,7 @@ public class Station : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
         }
     }
 
